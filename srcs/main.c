@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:41:15 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/02 23:49:11 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/03 00:22:24 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,27 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		}
 		add_history(str);
+		str = ft_space(str);
+		printf("[%s]\n", str);
+		ft_expand(&str, &monenv);
+		printf("[[%s]]\n", str);
 		if (!check_quote(str))
 		{
 			free(str);
+			printf("quote error\n");
 			continue ;
 		}
-		str = ft_space(str);
-		printf("%s\n", str);
-		check_quote(str);
-		printf("%s\n", str);
+		str = remove_useless_quote(str);
 		if (!str)
 			return (0);
 		if (!ft_syntax(str))
 		{
 			free(str);
-			printf(SYNTAXERROR);
 			continue ;
 		}
 		//tab = ft_split_isspace(str);
-		data.split = ft_split(str, '|');
+		if (str)
+			data.split = ft_split(str, '|');
 		execution(&data, data.split, env);
 		free(str);
 		ft_freetab(data.split);

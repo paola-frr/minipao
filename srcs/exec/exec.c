@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:23:12 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/02 01:20:36 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/02 23:50:12 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	call_builtin(char *str, t_cmd *cmds, char **env)
 	else if (!ft_strcmp(str, "echo"))
 		return (ft_echo(cmds->arg), 1);
 	// if (!ft_strcmp(str, "env"))
-	// 	ft_env(cmds->arg);
+	// 	ft_env(env);
 	// free_inchildprocess(cmds->data, cmds);
 	else
 		return (0);
