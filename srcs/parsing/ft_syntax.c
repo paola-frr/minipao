@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 00:33:06 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/03 00:17:51 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/03 00:31:06 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ int	check_rafter(char *str, int i)
 
 void	print_syntax_error(char *str, int i)
 {
+	printf("hello\n");
 	if (str[i] == '|')
+		printf("bash : syntax error near unexpected token `|'\n");
+	else if (str[i + 3] && str[i + 3] == '|')
 		printf("bash : syntax error near unexpected token `|'\n");
 	else if (i == 0 || (str[i + 1] && str[i + 1] == ft_isspace(str[i])))
 			printf("bash : syntax error near unexpected token `newline'\n");
@@ -92,6 +95,8 @@ void	print_syntax_error(char *str, int i)
 			if (str[i + 1] == '<' && str[i + 2] == '>')
 				printf("syntax error near unexpected token `<>'\n");
 		}
+	else
+		printf("cas a gerer\n");
 }
 
 int	ft_syntax(char *str)
