@@ -12,14 +12,17 @@ SRCS_NAMES		=	main.c \
 					parsing/remove_useless_quote.c \
 					parsing/ft_syntax.c \
 					parsing/ft_unquote.c \
-					parsing/ft_export.c \
-					parsing/ft_unset.c \
-					parsing/env.c \
+					builtin/ft_export.c \
+					builtin/ft_unset.c \
+					builtin/env.c \
+					exec/free.c \
+					exec/here_doc.c \
 					exec/error.c \
 					exec/path.c \
 					exec/exec.c \
 					exec/parse_arr.c \
 					exec/utils.c \
+					exec/call_builtin.c \
 					builtin/ft_cd.c \
 					builtin/ft_echo.c \
 					builtin/ft_exit.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:23:12 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/02 23:50:12 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/11 20:27:34 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,57 +21,10 @@ void	init(t_data *data, int ac, char **tab)
 	data->path = NULL;
 }
 
-void	free_cmd(t_cmd *cmds)
-{
-	free(cmds->arg);
-	free(cmds->type);
-	free(cmds->file);
-}
-
-void	free_inchildprocess(t_data *data, t_cmd *cmds)
-{
-	free_cmd(cmds);
-	ft_freetab(data->arg);
-	ft_freetab(data->split);
-	ft_freetab(data->env);
-	ft_freetab(data->path);
-}
-
-int	builtin(char *str)
-{
-	if (!ft_strcmp(str, "cd") || !ft_strcmp(str, "pwd")
-	|| !ft_strcmp(str, "export") ||!ft_strcmp(str, "unset")
-	||!ft_strcmp(str, "exit") || !ft_strcmp(str, "echo"))
-		return (1);
-	return (0);
-}
-
-int	call_builtin(char *str, t_cmd *cmds, char **env)
-{
-	if (!ft_strcmp(str, "cd"))
-		return (ft_cd(cmds->arg), 1);
-	else if (!ft_strcmp(str, "pwd"))
-		return (ft_pwd(cmds->arg), 1);
-	else if (!ft_strcmp(str, "export"))
-		return (ft_export(cmds->arg, &env), 1);
-	else if (!ft_strcmp(str, "unset"))
-		return (ft_unset(cmds->arg, &env), 1);
-	else if (!ft_strcmp(str, "exit"))
-		return (ft_exit(cmds->arg, cmds->data, cmds), 1);
-	else if (!ft_strcmp(str, "echo"))
-		return (ft_echo(cmds->arg), 1);
-	// if (!ft_strcmp(str, "env"))
-	// 	ft_env(env);
-	// free_inchildprocess(cmds->data, cmds);
-	else
-		return (0);
-}
-
 int	child_process(t_data *data, char **tab, char **env, int i)
 {
 	char	**arg;
 	char	*cmd;
-	// t_cmd	*cmds;
 
 	free(data->pid);
 	data->arg = ft_split(tab[i], ' ');
@@ -156,7 +109,6 @@ void	execution(t_data *data, char **tab, char **env)
 	int	i;
 	char *cmd;
 	
-
 	i = 0;
 	printf("[[[[[[[%s]]]]]]]\n", tab[0]);
 	data->nbcmd = count_len(tab);
