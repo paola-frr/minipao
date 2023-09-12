@@ -6,16 +6,11 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 21:09:53 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/08/31 19:44:12 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/12 21:55:37 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// #include <stdio.h>
-// #include <string.h>
-// #include <unistd.h>
-// #include <stdlib.h>
 
 int	ft_cd(char **tab)
 {
@@ -52,16 +47,3 @@ int	ft_cd(char **tab)
 	}
 	return (0);
 }
-
-// int main(int ac, char **av)
-// {
-// 	char *tab1[5] = {"..", NULL}; // works
-// 	char *tab2[5] = {"..", "a", NULL}; // not work
-// 	char *tab3[5] = {"ssfd", NULL}; // not work
-// 	char *tab4[5] = {NULL}; // works
-// 	printf("BEFORE %s\n", getcwd(NULL, 1024));
-// 	ft_cd(tab1);
-// 	printf("AFTER %s\n", getcwd(NULL, 1024));
-// 	// ft_cd(tab2);
-// 	// ft_cd(tab3);
-// }

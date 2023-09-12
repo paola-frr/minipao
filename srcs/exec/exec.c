@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:23:12 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/12 01:06:38 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/12 21:54:54 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	child_process(t_data *data, char **tab, char **env, int i)
 
 	free(data->pid);
 	data->arg = ft_split(tab[i], ' ');
+	ft_unquote(data->arg, &env);
 	if (!data->arg)
 		exit(1);
 	if (!*data->arg)
@@ -113,6 +114,7 @@ void	execution(t_data *data, char **tab, char **env)
 	printf("[[[[[[[%s]]]]]]]\n", tab[0]);
 	data->nbcmd = count_len(tab);
 	data->arg = ft_split(tab[0], ' ');
+	ft_unquote(data->arg, &env);
 	if (!data->arg)
 		exit(1);
 	if (!*data->arg)
