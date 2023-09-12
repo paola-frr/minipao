@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:41:15 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/11 22:46:25 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/12 20:00:09 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	main(int ac, char **av, char **env)
 			printf("quote error\n");
 			continue ;
 		}
-		str = remove_useless_quote(str);
 		if (!str)
 			return (0);
 		if (!ft_syntax(str))
@@ -54,7 +53,6 @@ int	main(int ac, char **av, char **env)
 			free(str);
 			continue ;
 		}
-		//tab = ft_split_isspace(str);
 		if (str)
 			data.split = ft_split(str, '|');
 		//heredoc(str);

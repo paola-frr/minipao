@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 03:09:08 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/01 00:47:56 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/12 19:58:08 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	expand_replace(char **str, int start, char *replace)
 	j = 0;
 	len_replace = ft_strlen(replace);
 	end = start + 1;
-	while ((*str)[end] && (ft_isalpha_((*str)[end]) || ft_isdigit((*str)[end])))
+	while ((*str)[end] && (ft_isalpha_((*str)[end]) || ft_isdigit((*str)[end])
+		|| (*str)[end] != '"' || (*str)[end] != '\''))
 		end++;
 	new = malloc(ft_strlen(*str) - end + start + len_replace + 2);
 	while (++i < start)
@@ -77,12 +78,8 @@ int	remove_expand(char **str, int start)
 	i = 0;
 	e = start + 1;
 	if ((*str)[e] && ft_isalpha_((*str)[e]))
-	{
 		while ((*str)[e] && (ft_isalpha_((*str)[e]) || ft_isdigit((*str)[e])))
 			e++;
-	}
-	else
-		e++;
 	new = malloc(sizeof(char) * (ft_strlen(*str) - e + start + 2));
 	while (*str && (*str)[i] && i < start)
 	{
@@ -91,7 +88,7 @@ int	remove_expand(char **str, int start)
 	}
 	while ((*str)[e])
 		new[i++] = (*str)[e++];
-	new[e] = '\0';
+	new[i] = '\0';
 	free(*str);
 	*str = new;
 	return (start);
@@ -142,7 +139,7 @@ int	ft_expand(char	**str, char ***env)
 		{
 			start = i++;
 			if ((*str)[i] && (*str)[i] == '?')
-				i = printf("on remplace par le dernier exit status\n");
+				i = printf("on print le exit_code ici\n");
 			else if ((*str)[i] && ft_isalpha_((*str)[i])
 				&& expand_is_in_env(*str, start + 1, env, &replace))
 				i = expand_replace(str, start, replace) - 1;

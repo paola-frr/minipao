@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 19:57:23 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/02 19:17:33 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/12 19:56:35 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,12 @@ char	**ft_copy(char **env)
 	return (cpenv);
 }
 
-void	printtab(char **env)
-{
-	int	i;
-
-	i = 0;
-	while (env[i])
-	{
-		printf("--> |%s|\n", env[i]);
-		i++;
-	}
-}
-
 int	ft_env(char **env)
 {
 	int	i;
 
 	i = 0;
-	if (!env || !env[0])
+	if (!env || !(*env))
 		return (0);
 	while (env[i])
 	{
