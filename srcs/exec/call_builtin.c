@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:24:27 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/11 20:17:12 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/12 01:09:18 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,45 @@ int	call_builtin(char *str, t_cmd *cmds, char **env)
 		return (0);
 	free_inchildprocess(cmds->data, cmds);
 }
+
+int	openfiles_builtin(t_cmd *cmds)
+{
+	int	i;
+	int fd;
+
+	i = 0;
+	while (cmds->file[i])
+	{
+		if (cmds->type[i] == 1)
+			fd = open(cmds->file[i], O_CREAT | O_TRUNC | O_WRONLY, 0666);
+		else if (cmds->type[i] == 2)
+			fd = open(cmds->file[i], O_CREAT | O_APPEND | O_WRONLY, 0666);
+		else if (cmds->type[i] == 3)
+			fd = open(cmds->file[i], O_RDONLY);
+		if (fd == -1)
+		{
+			free_cmd(cmds);
+			fprintf(stderr, "%s\n", strerror(errno));
+			return (1);
+		}
+		if (cmds->type[i] == 1 || cmds->type[i] == 2)
+			dup_n_close(fd, STDOUT_FILENO);
+		else
+			dup_n_close(fd, STDIN_FILENO);
+		i++;
+	}
+	return (0);
+}
+
+// int main()
+// {
+// 	int tmp;
+
+// 	tmp = dup(STDOUT_FILENO);
+// 	printf("hello\n");
+// 	int fd = open("moha.txt", O_RDWR | O_CREAT, 0666);
+// 	dup2(fd, STDOUT_FILENO);
+// 	printf("hey\n");
+// 	dup2(tmp, STDOUT_FILENO);
+// 	printf("goodbye\n");
+// }

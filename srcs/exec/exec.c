@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:23:12 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/11 20:27:34 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/12 01:06:38 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,14 @@ void	execution(t_data *data, char **tab, char **env)
 	data->cmds->data = data;
 	if (data->nbcmd == 1 && builtin(data->cmds->cmd))
 	{
-		printf("i am builtin %s\n", tab[0]);
+		int fd[2];
+		fd[0] = dup(0);
+		fd[1] = dup(1);
+		printf("i am builtin %s\n", data->cmds->cmd);
+		openfiles_builtin(data->cmds);
 		call_builtin(data->cmds->cmd, data->cmds, env);
+		dup2(fd[0], 0);
+		dup2(fd[1], 1);
 	}
 	else
 	{
