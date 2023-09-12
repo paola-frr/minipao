@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:36:40 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/11 23:05:19 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/12 21:41:56 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int		builtin(char *str);
 void	free_inchildprocess(t_data *data, t_cmd *cmds);
 int		ft_pwd(char **tab);
 void	free_cmd(t_cmd *cmds);
+int	openfiles_builtin(t_cmd *cmds);
 // tab = {<}{infile1}{wc}{-l}{>}{out1}{>>}{append1}{<<}{heredoc1}{-c}{>}{out2}{>>}{append2}{<}{infile2}
 // t_cmds =
 // 	cmd = "wc";

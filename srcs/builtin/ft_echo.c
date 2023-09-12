@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 23:35:41 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/12 19:57:09 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/12 01:09:28 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,8 @@ int	ft_echo(char **tab)
 	int	i;
 	int	option;
 
-	i = 0;
+	i = 1;
 	option = 0;
-	if (!tab || strncmp(tab[i], "echo", 4))
-		return (0);
 	if (tab[i] == NULL)
 		return (printf("\n"), 0);
 	if (check_echo_option(tab[i]))
