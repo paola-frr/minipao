@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:45:13 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/13 02:09:33 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/14 00:49:07 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// just add the function signal(SIGINT, &sigint_heredoc)
+// at the beggining of your heredoc :)
 
 int	how_many_hrdoc(char *str)
 {

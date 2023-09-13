@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:36:40 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/14 00:43:34 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/14 00:51:17 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,35 +32,36 @@
 # define DQUOTE '\"'
 # define SYNTAXERROR "syntax error !\n"
 
-int		check_quote(char *str);
-int		check_rafter(char *str, int i);
-int		ft_syntax(char *str);
+int			check_quote(char *str);
+int			check_rafter(char *str, int i);
+int			ft_syntax(char *str);
 
-void	ft_unquote(char **tab, char ***env);
+void		ft_unquote(char **tab, char ***env);
 
-char	*ft_space(char *input);
+char		*ft_space(char *input);
 
-char	*remove_useless_quote(char *str);
+char		*remove_useless_quote(char *str);
 
-char	**ft_copy(char **env);
-int		replace_in_env(char *add, char ***env);
-void	ft_add_to_env(char *str, char ***env);
-void	ft_remove_from_env(char *str, char ***env);
-int		ft_env(char **env);
+char		**ft_copy(char **env);
+int			replace_in_env(char *add, char ***env);
+void		ft_add_to_env(char *str, char ***env);
+void		ft_remove_from_env(char *str, char ***env);
+int			ft_env(char **env);
 
-int		ft_export(char	**str, char ***env);
+int			ft_export(char	**str, char ***env);
 
-int		ft_unset(char **tab, char ***env);
+int			ft_unset(char **tab, char ***env);
 
-int		ft_echo(char **tab);
+int			ft_echo(char **tab);
 
-int		ft_expand(char	**str, char ***env);
+int			ft_expand(char	**str, char ***env);
 
-char	*return_value(char *str);
+char		*return_value(char *str);
 
-int		ft_cd(char **tab);
+int			ft_cd(char **tab);
 
-void	allsignals();
+void		allsignals();
+static void	sigint_heredoc(int signum);
 
 typedef struct t_data {
 	int		nbcmd;

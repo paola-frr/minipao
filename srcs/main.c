@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:41:15 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/14 00:32:56 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/14 00:50:22 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int ac, char **av, char **env)
 	data.env = ft_copy(env);
 	while (1)
 	{
+		allsignals();
 		str = readline("pao> ");
 		if (!str)
 			break ;
