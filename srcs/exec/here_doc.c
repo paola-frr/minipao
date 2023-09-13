@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:45:13 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/11 23:06:15 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/13 02:09:33 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,24 @@ void	here_doc(t_data *data, char *str)
 	hrdoc = ft_calloc(sizeof(t_hrdoc), data->n_hrdocs);
 	int z = 0;
 	int i = 0;
+	printf("nb docs: %d\n", data->n_hrdocs);
 	while (z < data->n_hrdocs)
 	{
 		if (str[i] == '<' && str[i + 1] && str[i + 1] == '<')
 		{
 			hrdoc[z++].key = key_word(&str[i + 2]);
+			printf("keyword: [%s]\n", hrdoc[z - 1].key);
 		}
+		i++;
 	}
-
 	// filling delimiters;
 	// make a function that prints everything
 	// fork blabla LATEr
+}
+
+void	letsgo_hrdoc(t_data *data, char *s)
+{
+	char *str;
+
+	 str = readline("heredoc >");
 }

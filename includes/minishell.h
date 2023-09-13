@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:36:40 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/12 21:41:56 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/12 23:50:47 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,15 @@ typedef struct t_hrdoc {
 
 
 
-int	how_many_hrdoc(char *str);
+int		how_many_hrdoc(char *str);
 int		ft_exit(char **tab, t_data *data, t_cmd *cmds);
 int		call_builtin(char *str, t_cmd *cmds, char **env);
 int		builtin(char *str);
 void	free_inchildprocess(t_data *data, t_cmd *cmds);
 int		ft_pwd(char **tab);
 void	free_cmd(t_cmd *cmds);
-int	openfiles_builtin(t_cmd *cmds);
+int		openfiles_builtin(t_cmd *cmds);
+void	here_doc(t_data *data, char *str);
 // tab = {<}{infile1}{wc}{-l}{>}{out1}{>>}{append1}{<<}{heredoc1}{-c}{>}{out2}{>>}{append2}{<}{infile2}
 // t_cmds =
 // 	cmd = "wc";
