@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 20:52:19 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/12 00:52:50 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/14 00:43:30 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ void	redirection(t_data *data, t_cmd *cmds, int index)
 	openfiles(cmds);
 }
 
-char	*check_cmd(t_data *data, char **env, char **tab)
+char	*check_cmd(t_data *data, char ***env, char **tab)
 {
 	char	*cmd;
 
 	if (!ft_strchr(tab[0], '/'))
 	{
-		data->path = get_path(env);
+		data->path = get_path(*env);
 		if (!data->path)
 		{
 			ft_printf("bash: %s: command not found\n", tab[0]);

@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 03:18:53 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/12 19:57:46 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/14 00:22:01 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int	ft_unset(char **tab, char ***env)
 				break ;
 			}
 		}
-		free (str);
+		if (!str)
+			free (str);
 	}
 	return (1);
 }

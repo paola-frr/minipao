@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 20:22:42 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/12 19:57:27 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/14 00:18:58 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,19 @@ int	ft_export(char	**tab, char ***env)
 	while (tab[i])
 	{
 		j = 0;
-		while (tab[i][j] && tab[i][j] != '=')
+		while (tab[i][j])
 		{
-			if ((i == 0 && !ft_isalpha_(tab[i][0])) || (!ft_isalpha_(tab[i][j])
-				&& !ft_isdigit(tab[i][j]) && tab[i][j] != '='))
+			if ((j == 0 && !ft_isalpha_(tab[i][0]))
+				|| !(ft_isalpha_(tab[i][j]) || ft_isdigit(tab[i][j])))
 			{
 				printf("export: `%s': not a valid identifier\n", tab[i]);
 				break ;
 			}
 			if (tab[i][++j] == '=')
+			{
 				ft_add_to_env(tab[i], env);
+				break ;
+			}
 		}
 		i++;
 	}

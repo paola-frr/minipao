@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 18:39:30 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/01 02:57:19 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/14 00:30:41 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ void	print_cmd(t_cmd *cmds)
 t_cmd	*parse(char **tab)
 {
 	static t_cmd	cmds = {0};
-	int		i;
-	int		t;
-	int		a;
+	int				i;
+	int				t;
+	int				a;
 
 	i = 0;
 	t = 0;

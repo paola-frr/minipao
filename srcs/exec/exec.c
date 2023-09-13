@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:23:12 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/12 21:54:54 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/14 00:42:28 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	init(t_data *data, int ac, char **tab)
 	data->path = NULL;
 }
 
-int	child_process(t_data *data, char **tab, char **env, int i)
+int	child_process(t_data *data, char **tab, char ***env, int i)
 {
 	char	**arg;
 	char	*cmd;
 
 	free(data->pid);
 	data->arg = ft_split(tab[i], ' ');
-	ft_unquote(data->arg, &env);
+	ft_unquote(data->arg, env);
 	if (!data->arg)
 		exit(1);
 	if (!*data->arg)
@@ -50,7 +50,7 @@ int	child_process(t_data *data, char **tab, char **env, int i)
 	{
 		cmd = check_cmd(data, env, data->cmds->arg);
 		if (cmd)
-			execve(cmd, data->cmds->arg, env);
+			execve(cmd, data->cmds->arg, *env);
 		the_perror(data->cmds->cmd);
 		free(cmd);
 	}
@@ -105,7 +105,7 @@ int    ft_strlen_tab(char **tab)
     return (i);
 }
 
-void	execution(t_data *data, char **tab, char **env)
+void	execution(t_data *data, char **tab, char ***env)
 {
 	int	i;
 	char *cmd;
@@ -114,7 +114,7 @@ void	execution(t_data *data, char **tab, char **env)
 	printf("[[[[[[[%s]]]]]]]\n", tab[0]);
 	data->nbcmd = count_len(tab);
 	data->arg = ft_split(tab[0], ' ');
-	ft_unquote(data->arg, &env);
+	ft_unquote(data->arg, env);
 	if (!data->arg)
 		exit(1);
 	if (!*data->arg)

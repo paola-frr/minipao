@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:41:15 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/13 02:18:16 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/14 00:32:56 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int ac, char **av, char **env)
 		if (str)
 			data.split = ft_split(str, '|');
 		// here_doc(&data, str);
-		execution(&data, data.split, env);
+		execution(&data, data.split, &env);
 		free(str);
 		ft_freetab(data.split);
 	}
