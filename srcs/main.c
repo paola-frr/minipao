@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:41:15 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/14 00:50:22 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/14 03:43:55 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int ac, char **av, char **env)
 	t_data	data = {0};
 	char	*str;
 	int		i;
-	char	**monenv;
 	char	**tab;
 	t_cmd *cmds;
 
@@ -25,9 +24,9 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	i = 0;
 	data.env = ft_copy(env);
+	allsignals();
 	while (1)
 	{
-		allsignals();
 		str = readline("pao> ");
 		if (!str)
 			break ;
@@ -37,18 +36,16 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		}
 		add_history(str);
-		str = ft_space(str);
-		printf("[%s]\n", str);
-		ft_expand(&str, &monenv);
-		printf("[[%s]]\n", str);
 		if (!check_quote(str))
 		{
 			free(str);
 			printf("quote error\n");
 			continue ;
 		}
-		if (!str)
-			return (0);
+		str = ft_space(str);
+		ft_expand(&str, &data.env);
+		ft_quote(str);
+		printf("[[%s]]\n", str);
 		if (!ft_syntax(str))
 		{
 			free(str);

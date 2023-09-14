@@ -6,11 +6,31 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 02:53:43 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/12 19:58:54 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/14 03:30:41 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_quote(char *str)
+{
+	int		i;
+	char	c;
+
+	i = -1;
+	while (str && str[++i])
+	{
+		if (str && str[i] == DQUOTE || str[i] == SQUOTE)
+		{
+			c = str[i++];
+			while (str[i] && str[i] != c)
+			{
+				str[i] *= -1;
+				i++;
+			}
+		}
+	}
+}
 
 char	*ft_unquote_str(char *str, int len, int *start, char c)
 {

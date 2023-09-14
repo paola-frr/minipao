@@ -6,28 +6,33 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:17:03 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/12 19:58:21 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/14 04:05:35 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	count_space2(char *str, int i)
+{
+	int	c;
+
+	c = str[i++];
+	while (str[i] && str[i] != c)
+		i++;
+	return (i);
+}
+
 int	count_space(char *str)
 {
 	int		i;
 	int		count;
-	char	c;
 
 	i = 0;
 	count = 0;
 	while (str && str[i])
 	{
 		if (str[i] == '\'' || str[i] == '"')
-		{
-			c = str[i++];
-			while (str[i] && str[i] != c)
-				i++;
-		}
+			i = count_space2(str, i);
 		else if (ft_strchr("<>", str[i]))
 		{
 			count += 2;
@@ -46,44 +51,51 @@ int	count_space(char *str)
 	return (count + i);
 }
 
+int	ft_space2(char *str, int i, int *j, char *new)
+{
+	if (ft_strchr("<>", str[*j]))
+	{
+		new[i++] = ' ';
+		while (str[*j] && ft_strchr("<>", str[*j]))
+			new[i++] = str[(*j)++];
+		new[i++] = ' ';
+	}
+	else if (ft_strchr("|", str[*j]))
+	{
+		new[i++] = ' ';
+		while (str[*j] && ft_strchr("|", str[*j]))
+			new[i++] = str[(*j)++];
+		new[i++] = ' ';
+	}
+	else
+		new[i++] = str[(*j)++];
+	return (i);
+}
+
 char	*ft_space(char *str)
 {
 	char	*new;
-	char	*tmp;
 	int		i;
+	int		j;
 	char	c;
 
-	tmp = str;
 	i = 0;
+	j = 0;
 	new = ft_calloc(count_space(str) + 1, 1);
 	if (!new)
 		return (NULL);
-	while (str && *str)
+	while (str && str[j])
 	{
-		if (*str == '\'' || *str == '"')
+		if (str[j] == '\'' || str[j] == '"')
 		{
-			new[i++] = *str;
-			c = *str++;
-			while (*str && *str != c)
-				new[i++] = *str++;
-			new[i++] = *str++;
-		}
-		else if (ft_strchr("<>", *str))
-		{
-			new[i++] = ' ';
-			while (*str && ft_strchr("<>", *str))
-				new[i++] = *str++;
-			new[i++] = ' ';
-		}
-		else if (ft_strchr("|", *str))
-		{
-			new[i++] = ' ';
-			while (*str && ft_strchr("|", *str))
-				new[i++] = *str++;
-			new[i++] = ' ';
+			new[i++] = str[j];
+			c = str[j++];
+			while (str[j] && str[j] != c)
+				new[i++] = str[j++];
+			new[i++] = str[j++];
 		}
 		else
-			new[i++] = *str++;
+			i = ft_space2(str, i, &j, new);
 	}
-	return (free(tmp), new);
+	return (free(str), new);
 }

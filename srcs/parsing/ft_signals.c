@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 21:37:27 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/14 00:49:58 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/14 01:36:49 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@ static void	sigint(int signum)
 	rl_redisplay();
 }
 
-void	allsignals()
+void	allsignals(void)
 {
 	signal(SIGQUIT, SIG_IGN);
-	signal(EOF, SIG_DFL);
 	signal(SIGINT, &sigint);
 }
-
 
 static void	sigint_heredoc(int signum)
 {

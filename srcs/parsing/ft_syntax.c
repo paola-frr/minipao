@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 00:33:06 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/12 19:58:37 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/14 03:28:12 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ int	check_quote(char *str)
 			c = str[i++];
 			bo = 0;
 			while (str[i] && str[i] != c)
-			{
-				str[i] *= -1;
 				i++;
-			}
 			if (!str[i])
 				return (bo);
 			if (str[i] == c)
