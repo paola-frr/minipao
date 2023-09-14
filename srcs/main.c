@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:41:15 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/14 23:13:14 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/15 00:09:55 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	main(int ac, char **av, char **env)
 		str = ft_space(str);
 		ft_expand(&str, &data.env);
 		ft_quote(str);
-		printf("[[%s]]\n", str);
 		if (!ft_syntax(str))
 		{
 			free(str);
