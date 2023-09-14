@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:23:12 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/14 00:42:28 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/14 23:19:54 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,6 @@ int	count_len(char **tab)
 	return (i);
 }
 
-void	print_tab(char **tab)
-{
-	for (int i = 0; tab[i]; i++)
-	{
-		printf("[%i]{%s}\n", i, tab[i]);
-	}
-}
-
 int    ft_strlen_tab(char **tab)
 {
     int    i;
@@ -111,7 +103,6 @@ void	execution(t_data *data, char **tab, char ***env)
 	char *cmd;
 	
 	i = 0;
-	printf("[[[[[[[%s]]]]]]]\n", tab[0]);
 	data->nbcmd = count_len(tab);
 	data->arg = ft_split(tab[0], ' ');
 	ft_unquote(data->arg, env);
@@ -130,7 +121,6 @@ void	execution(t_data *data, char **tab, char ***env)
 		int fd[2];
 		fd[0] = dup(0);
 		fd[1] = dup(1);
-		printf("i am builtin %s\n", data->cmds->cmd);
 		openfiles_builtin(data->cmds);
 		call_builtin(data->cmds->cmd, data->cmds, env);
 		dup2(fd[0], 0);

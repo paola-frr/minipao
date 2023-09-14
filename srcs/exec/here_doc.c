@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:45:13 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/14 22:42:13 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/14 23:16:27 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ void	here_doc(t_data *data, char *str)
 		}
 		i++;
 	}
-	for (int r = 0; z < data->n_hrdocs; z++)
-		fprintf(stderr, "DELIMITER = [%s]\n", hrdoc[z].key);
 	child_pid = fork();
 	if (child_pid == -1)
 		exit(EXIT_FAILURE);
@@ -93,7 +91,7 @@ void	here_doc(t_data *data, char *str)
 		{
 			while (1)
 			{
-				s = readline(hrdoc[c].key);
+				s = readline("> ");
 				if (!s || !strcmp(s, hrdoc[c].key))
 					break ;
 				ft_putendl_fd(s, hrdoc[c].fd[1]);

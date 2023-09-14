@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 18:39:30 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/14 00:30:41 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/14 23:19:00 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,6 @@ void	mallocall(t_cmd	*cmds, char **tab)
 	cmds->type = ft_calloc(sizeof(int), t);
 }
 
-void	print_cmd(t_cmd *cmds)
-{
-	int	i;
-
-	if (cmds->cmd)
-		fprintf(stderr, "CMD NAME = {%s}\nCMD ARGS = ", cmds->cmd);
-	i = 0;
-	while (cmds->arg[i])
-		fprintf(stderr, "[%s]", cmds->arg[i++]);
-	fprintf(stderr, "\n");
-	i = 0;
-	while(cmds->file[i])
-	{
-		fprintf(stderr,"{%i}[%s]\n", cmds->type[i], cmds->file[i]);
-		i++;
-	}
-}
-
 t_cmd	*parse(char **tab)
 {
 	static t_cmd	cmds = {0};
@@ -94,6 +76,5 @@ t_cmd	*parse(char **tab)
 		i++;
 	}
 	cmds.cmd = cmds.arg[0];
-	print_cmd(&cmds);
 	return (&cmds);
 }
