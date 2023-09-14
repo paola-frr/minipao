@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   call_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:24:27 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/14 00:33:15 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/14 22:10:14 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	builtin(char *str)
 {
+	if (!str)
+		return (0);
 	if (!ft_strcmp(str, "cd") || !ft_strcmp(str, "pwd")
 	|| !ft_strcmp(str, "export") ||!ft_strcmp(str, "unset")
 	||!ft_strcmp(str, "exit") || !ft_strcmp(str, "echo")
@@ -71,16 +73,3 @@ int	openfiles_builtin(t_cmd *cmds)
 	}
 	return (0);
 }
-
-// int main()
-// {
-// 	int tmp;
-
-// 	tmp = dup(STDOUT_FILENO);
-// 	printf("hello\n");
-// 	int fd = open("moha.txt", O_RDWR | O_CREAT, 0666);
-// 	dup2(fd, STDOUT_FILENO);
-// 	printf("hey\n");
-// 	dup2(tmp, STDOUT_FILENO);
-// 	printf("goodbye\n");
-// }

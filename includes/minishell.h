@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:36:40 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/14 03:32:38 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/14 22:14:17 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,13 @@ typedef struct t_data {
 	char	**split;
 	int		n_hrdocs;
 	struct t_cmd	*cmds;
+	struct t_hrdoc	*hrdoc;
 }		t_data;
 
 typedef	struct t_cmd {
 	char	*cmd;
 	char	**arg;
-	int		*type; // < >> >
+	int		*type;
 	char	**file;
 	struct t_data	*data;
 }		t_cmd;
@@ -77,6 +78,7 @@ typedef	struct t_cmd {
 typedef struct t_hrdoc {
 	int fd[2];
 	char *key;
+	int	 size;
 }		t_hrdoc;
 
 
@@ -89,55 +91,6 @@ int		ft_pwd(char **tab);
 void	free_cmd(t_cmd *cmds);
 int		openfiles_builtin(t_cmd *cmds);
 void	here_doc(t_data *data, char *str);
-// tab = {<}{infile1}{wc}{-l}{>}{out1}{>>}{append1}{<<}{heredoc1}{-c}{>}{out2}{>>}{append2}{<}{infile2}
-// t_cmds =
-// 	cmd = "wc";
-// 	arg = {"wc", "-l", "-c", NULL};
-// 	type = {3,			1,		2,			4,			1,		2,			3};
-// 	file = {"infile1",	out1,	append1,	heredoc1,	out2,	append2,	infile2}
-
-// infile  infile2
-// outfile append2
-// execve()
-
-// tab = {cat}{-e}{>}{out}
-// t_cmds = 
-// 	cmd	= "cat"
-// 	arg = {"cat", "-e", NULL};
-// 	type = {1};
-// 	file = {out};
-
-// tab = {<}{infile}
-// 	cmd = NULL;
-// 	arg = NULL;
-// 	type = {3};
-// 	file = {infile};
-	
-// tab = {> cat -e out}
-// 	cmd = "-e";
-// 	arg = {"-e", "out", NULL};
-// 	type = {1};
-// 	file = {cat};
-	
-// tab = {cat -e out}
-// 	cmd = "cat"
-// 	arg = {"cat", "-e", "out", NULL};
-// 	type = NULL;
-// 	file = NULL;
-	
-
-// after type always file
-// if tab[i] == type
-// 	type[k] = typeof(tab[i]);
-// 	file[k] = tab[i + 1]
-// 	i++;
-// else
-// 	arg[p] = tab[i++];
-
-// >	1
-// >>	2
-// <	3
-// <<	4
 
 /*		EXEC PATH 		*/
 char	**get_path(char **env);

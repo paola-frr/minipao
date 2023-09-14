@@ -3,16 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 20:52:19 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/14 00:43:30 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/14 22:40:35 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	openfiles(t_cmd *cmds)
+int getpipe(char *filename, t_hrdoc *hrdoc)
+{
+	int fd = -1;
+	int i = 0;
+	while (i < hrdoc[0].size)
+	{
+		if (!strcmp(filename, hrdoc[i].key))
+			return (hrdoc[i].fd[0]);		
+		i++;
+	}
+	return (fd);
+}
+
+void	openfiles(t_cmd *cmds, t_hrdoc *hrdoc)
 {
 	int	i;
 	int fd;
@@ -26,6 +39,8 @@ void	openfiles(t_cmd *cmds)
 			fd = open(cmds->file[i], O_CREAT | O_APPEND | O_WRONLY, 0666);
 		else if (cmds->type[i] == 3)
 			fd = open(cmds->file[i], O_RDONLY);
+		else if (cmds->type[i] == 4)
+			fd = getpipe(cmds->file[i], hrdoc);
 		if (fd == -1)
 		{
 			free_cmd(cmds);
@@ -51,7 +66,7 @@ void	redirection(t_data *data, t_cmd *cmds, int index)
 		dup2(data->fd[1], STDOUT_FILENO);
 	close(data->fd[0]);
 	close(data->fd[1]);
-	openfiles(cmds);
+	openfiles(cmds, data->hrdoc);
 }
 
 char	*check_cmd(t_data *data, char ***env, char **tab)
