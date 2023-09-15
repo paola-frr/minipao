@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:42:11 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/11 19:42:24 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/15 02:20:46 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,9 @@ void	free_inchildprocess(t_data *data, t_cmd *cmds)
 	ft_freetab(data->path);
 }
 
+void	free_in_fd(t_cmd *cmds)
+{
+	free_cmd(cmds);
+	fprintf(stderr, "%s\n", strerror(errno));
+	exit(1);
+}

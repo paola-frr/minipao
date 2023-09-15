@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 20:22:42 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/15 00:45:50 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/14 00:18:58 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,24 +60,17 @@ void	ft_add_to_env(char *add, char ***env)
 	*env = new;
 }
 
-int	ft_export_check(char	**tab)
-{
-	if (!tab || strcmp(tab[0], "export"))
-		return (0);
-	if (tab[1] == NULL)
-		return (printf("\n"), 1);
-	return (-1);
-}
-
 int	ft_export(char	**tab, char ***env)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	if (ft_export_check(tab) > 0)
-		return (ft_export_check(tab));
-	while (tab[++i])
+	if (!tab || strcmp(tab[i], "export"))
+		return (0);
+	if (tab[++i] == NULL)
+		return (printf("\n"), 1);
+	while (tab[i])
 	{
 		j = 0;
 		while (tab[i][j])
@@ -94,6 +87,7 @@ int	ft_export(char	**tab, char ***env)
 				break ;
 			}
 		}
+		i++;
 	}
 	return (1);
 }

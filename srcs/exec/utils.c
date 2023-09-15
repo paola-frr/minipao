@@ -6,20 +6,23 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 20:52:19 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/14 22:40:35 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/15 03:07:51 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int getpipe(char *filename, t_hrdoc *hrdoc)
+int	getpipe(char *filename, t_hrdoc *hrdoc)
 {
-	int fd = -1;
-	int i = 0;
+	int	fd;
+	int	i;
+
+	fd = -1;
+	i = 0;
 	while (i < hrdoc[0].size)
 	{
 		if (!strcmp(filename, hrdoc[i].key))
-			return (hrdoc[i].fd[0]);		
+			return (hrdoc[i].fd[0]);
 		i++;
 	}
 	return (fd);
@@ -28,7 +31,7 @@ int getpipe(char *filename, t_hrdoc *hrdoc)
 void	openfiles(t_cmd *cmds, t_hrdoc *hrdoc)
 {
 	int	i;
-	int fd;
+	int	fd;
 
 	i = 0;
 	while (cmds->file[i])
@@ -42,11 +45,7 @@ void	openfiles(t_cmd *cmds, t_hrdoc *hrdoc)
 		else if (cmds->type[i] == 4)
 			fd = getpipe(cmds->file[i], hrdoc);
 		if (fd == -1)
-		{
-			free_cmd(cmds);
-			fprintf(stderr, "%s\n", strerror(errno));
-			exit(1);
-		}
+			free_in_fd(cmds);
 		if (cmds->type[i] == 1 || cmds->type[i] == 2)
 			dup_n_close(fd, STDOUT_FILENO);
 		else

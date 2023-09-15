@@ -6,27 +6,33 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 21:09:53 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/14 23:18:14 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/15 00:54:21 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	go_home(void)
+{
+	char	*home;
+
+	home = getenv("HOME");
+	if (home)
+		return (chdir(home), 0);
+	return (printf("bash: cd: HOME not set\n"), 1);
+}
+
 int	ft_cd(char **tab)
 {
-	int	i;
-	int	r;
+	int		i;
+	int		r;
+	char	*home;
 
 	i = 1;
 	if (!tab)
 		return (0);
 	if (!strncmp(tab[0], "cd", 2) && tab[i] == NULL)
-	{
-		char *home = getenv("HOME");
-		if (home)
-			return (chdir(home), 0);
-		return (printf("bash: cd: HOME not set\n"), 1);
-	}
+		go_home();
 	else if (!strncmp(tab[0], "cd", 2) && tab[i] && tab[i + 1] == NULL)
 	{
 		r = chdir(tab[i]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_signals.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 21:37:27 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/14 01:36:49 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/15 03:18:49 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	allsignals(void)
 
 static void	sigint_heredoc(int signum)
 {
-	(void)signum;
 	close(STDIN_FILENO);
 	write(STDOUT_FILENO, "> ^C\n", 5);
 }

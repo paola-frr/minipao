@@ -22,6 +22,7 @@ SRCS_NAMES		=	main.c \
 					exec/exec.c \
 					exec/parse_arr.c \
 					exec/utils.c \
+					exec/utils2.c \
 					exec/call_builtin.c \
 					builtin/ft_cd.c \
 					builtin/ft_echo.c \

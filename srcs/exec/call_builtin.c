@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:24:27 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/14 22:10:14 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/15 02:12:21 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	builtin(char *str)
 	if (!str)
 		return (0);
 	if (!ft_strcmp(str, "cd") || !ft_strcmp(str, "pwd")
-	|| !ft_strcmp(str, "export") ||!ft_strcmp(str, "unset")
-	||!ft_strcmp(str, "exit") || !ft_strcmp(str, "echo")
-	|| !ft_strcmp(str, "env"))
+		|| !ft_strcmp(str, "export") ||!ft_strcmp(str, "unset")
+		||!ft_strcmp(str, "exit") || !ft_strcmp(str, "echo")
+		|| !ft_strcmp(str, "env"))
 		return (1);
 	return (0);
 }
@@ -48,7 +48,7 @@ int	call_builtin(char *str, t_cmd *cmds, char ***env)
 int	openfiles_builtin(t_cmd *cmds)
 {
 	int	i;
-	int fd;
+	int	fd;
 
 	i = 0;
 	while (cmds->file[i])
