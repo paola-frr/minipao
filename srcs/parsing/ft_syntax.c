@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 00:33:06 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/14 03:28:12 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/15 22:49:59 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,21 @@ int	ft_syntax(char *str)
 			return (print_syntax_error(str, -i), 0);
 	}
 	return (1);
+}
+
+int	syntax(t_data *data, char *str)
+{
+	if (!*str)
+		return (1);
+	if (!ft_syntax(str) || !check_quote(str))
+	{
+		data->exit_code = 2;
+		return (1);
+	}
+	if (!ft_strcmp(str, "exit"))
+	{
+		data->exit_code = 0;
+		return (2);
+	}
+	return (0);
 }

@@ -6,11 +6,32 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 03:09:08 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/12 19:58:08 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/15 22:49:01 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	end_of_expand(char **str, int start)
+{
+	int	e;
+
+	e = start + 1;
+	if ((*str)[e] == '?')
+		return (e + 1);
+	else if (!(*str)[e] || (*str)[e] == 32 || (*str)[e] == 33
+		|| ((*str)[e] >= 35 && (*str)[e] <= 38) || ((*str)[e] >= 40
+		&& (*str)[e] <= 47) || ((*str)[e] >= 58 && (*str)[e] <= 64)
+		|| ((*str)[e] >= 91 && (*str)[e] <= 96) || (*str)[e] == 123
+		|| (*str)[e] == 125)
+			return (-1);
+	else if ((*str)[e] == '?' || ft_isdigit((*str)[e]))
+		return (e + 1);
+	else if ((*str)[e] && ft_isalpha_((*str)[e]))
+		while ((*str)[e] && (ft_isalpha_((*str)[e]) || ft_isdigit((*str)[e])))
+			e++;
+	return (e);
+}
 
 int	expand_replace(char **str, int start, char *replace)
 {
@@ -23,16 +44,13 @@ int	expand_replace(char **str, int start, char *replace)
 	i = -1;
 	j = 0;
 	len_replace = ft_strlen(replace);
-	end = start + 1;
-	while ((*str)[end] && (ft_isalpha_((*str)[end]) || ft_isdigit((*str)[end])
-		|| (*str)[end] != '"' || (*str)[end] != '\''))
-		end++;
+	end = end_of_expand(str, start);
 	new = malloc(ft_strlen(*str) - end + start + len_replace + 2);
 	while (++i < start)
 		new[i] = (*str)[i];
 	while (replace && replace[j])
 		new[i++] = replace[j++];
-	while ((*str)[end])
+	while ((*str)[end] != '\0')
 		new[i++] = (*str)[end++];
 	new[i] = '\0';
 	free(*str);
@@ -69,6 +87,7 @@ int	skip_simple_quote(char *str, int i)
 	return (i);
 }
 
+
 int	remove_expand(char **str, int start)
 {
 	char	*new;
@@ -76,10 +95,9 @@ int	remove_expand(char **str, int start)
 	int		e;
 
 	i = 0;
-	e = start + 1;
-	if ((*str)[e] && ft_isalpha_((*str)[e]))
-		while ((*str)[e] && (ft_isalpha_((*str)[e]) || ft_isdigit((*str)[e])))
-			e++;
+	e = end_of_expand(str, start);
+	if (e == -1)
+		return (start + 1);
 	new = malloc(sizeof(char) * (ft_strlen(*str) - e + start + 2));
 	while (*str && (*str)[i] && i < start)
 	{
@@ -123,7 +141,7 @@ int	expand_is_in_env(char *str, int start, char ***env, char **replace)
 	return (free(check), 0);
 }
 
-int	ft_expand(char	**str, char ***env)
+int	ft_expand(char	**str, char ***env, int status)
 {
 	int		i;
 	int		start;
@@ -139,7 +157,7 @@ int	ft_expand(char	**str, char ***env)
 		{
 			start = i++;
 			if ((*str)[i] && (*str)[i] == '?')
-				i = printf("on print le exit_code ici\n");
+				i = expand_replace(str, start, ft_itoa(status)) - 1;
 			else if ((*str)[i] && ft_isalpha_((*str)[i])
 				&& expand_is_in_env(*str, start + 1, env, &replace))
 				i = expand_replace(str, start, replace) - 1;

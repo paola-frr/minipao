@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:36:40 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/15 03:19:25 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/15 22:50:56 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int			ft_env(char **env);
 int			ft_export(char	**str, char ***env);
 int			ft_unset(char **tab, char ***env);
 int			ft_echo(char **tab);
-int			ft_expand(char	**str, char ***env);
+int			ft_expand(char  **str, char ***env, int status);
 char		*return_value(char *str);
 int			ft_cd(char **tab);
 void		allsignals(void);

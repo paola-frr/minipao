@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:17:03 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/14 04:05:35 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/15 22:49:47 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ int	count_space(char *str)
 	while (str && str[i])
 	{
 		if (str[i] == '\'' || str[i] == '"')
-			i = count_space2(str, i);
+		{
+			i = count_space2(str, i) + 1;
+		}
 		else if (ft_strchr("<>", str[i]))
 		{
 			count += 2;
