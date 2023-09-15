@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:41:15 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/15 00:09:55 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/15 22:52:51 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,13 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		}
 		add_history(str);
-		if (!check_quote(str))
-		{
-			free(str);
-			printf("quote error\n");
-			continue ;
-		}
+		 if (syntax(&data, str) == 1)
+		 	continue ;
+		if (syntax(&data, str) == 2)
+			break ;
 		str = ft_space(str);
-		ft_expand(&str, &data.env);
+		ft_expand(&str, &data.env, data.exit_code);
 		ft_quote(str);
-		if (!ft_syntax(str))
-		{
-			free(str);
-			continue ;
-		}
 		if (str)
 			data.split = ft_split(str, '|');
 		here_doc(&data, str);

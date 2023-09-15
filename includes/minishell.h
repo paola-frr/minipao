@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:36:40 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/15 22:50:56 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/15 22:53:22 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int			ft_expand(char  **str, char ***env, int status);
 char		*return_value(char *str);
 int			ft_cd(char **tab);
 void		allsignals(void);
+int			syntax(t_data *data, char *str);
 static void	sigint_heredoc(int signum);
 
 
