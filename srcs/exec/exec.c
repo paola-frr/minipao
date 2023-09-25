@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:23:12 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/16 00:02:02 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/24 23:11:29 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	child_process(t_data *data, char **tab, char ***env, int i)
 	}
 	manage_cmds(data, env);
 	free_inchildprocess(data, data->cmds);
-	exit(127);
+	exit(data->exit_code);
 }
 
 void	parent_process(t_data *data)

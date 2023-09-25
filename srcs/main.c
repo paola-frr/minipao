@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:41:15 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/15 23:22:12 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/24 22:59:08 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	main(int ac, char **av, char **env)
 			break ;
 		str = ft_space(str);
 		ft_expand(&str, &data.env, data.exit_code);
+		if (!str || !*str)
+			continue ;
 		ft_quote(str);
 		if (str)
 			data.split = ft_split(str, '|');

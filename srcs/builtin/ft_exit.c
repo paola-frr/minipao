@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 00:01:49 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/15 00:49:02 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/24 23:15:33 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	two_arg_exit(char **tab, t_data *data, t_cmd *cmds, int i)
 	if (num == 0)
 	{
 		printf("exit\n");
-		printf("bash: exit: %s: numeric argument required\n", tab[i + 1]);
+		fprintf(stderr, "bash: exit: %s: numeric argument required\n", tab[i + 1]);
 		free_inchildprocess(data, cmds);
 		data->exit_code = 2;
 		exit (2);
@@ -80,7 +80,7 @@ void	three_arg_exit(char **tab, t_data *data, t_cmd *cmds, int i)
 	{
 		printf("exit\n");
 		printf("exit\n");
-		printf("bash: exit: %s: numeric argument required\n", tab[i + 1]);
+		fprintf(stderr, "bash: exit: %s: numeric argument required\n", tab[i + 1]);
 		free_inchildprocess(data, cmds);
 		data->exit_code = 2;
 		exit (2);
@@ -88,7 +88,7 @@ void	three_arg_exit(char **tab, t_data *data, t_cmd *cmds, int i)
 	else if (num <= 9223372036854775807)
 	{
 		printf("exit\n");
-		printf("bash: exit: too many arguments\n");
+		fprintf(stderr, "bash: exit: too many arguments\n");
 	}
 }
 

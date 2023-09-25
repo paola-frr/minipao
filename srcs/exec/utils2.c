@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 03:06:46 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/15 03:08:55 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/24 23:13:00 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	manage_cmds(t_data *data, char ***env)
 	char	*cmd;
 
 	if (builtin(data->cmds->cmd))
-		call_builtin(data->cmds->cmd, data->cmds, env);
+		data->exit_code = call_builtin(data->cmds->cmd, data->cmds, env);
 	else
 	{
 		cmd = check_cmd(data, env, data->cmds->arg);
@@ -34,6 +34,7 @@ void	manage_cmds(t_data *data, char ***env)
 			execve(cmd, data->cmds->arg, *env);
 		the_perror(data->cmds->cmd);
 		free(cmd);
+		data->exit_code = 127;
 	}
 }
 
@@ -43,7 +44,11 @@ void	wait_n_close(t_data *data)
 
 	i = 0;
 	while (i < data->nbcmd)
-		waitpid(data->pid[i++], 0, 0);
+	{
+		waitpid(data->pid[i++], &data->exit_code, 0);
+		if (WIFEXITED(data->exit_code))
+			data->exit_code = WEXITSTATUS(data->exit_code);
+	}
 	close(data->fd[0]);
 	free(data->pid);
 }
