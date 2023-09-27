@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:36:40 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/24 20:25:24 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/27 21:45:21 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,15 @@ int			replace_in_env(char *add, char ***env);
 void		ft_add_to_env(char *str, char ***env);
 void		ft_remove_from_env(char *str, char ***env);
 int			ft_env(char **env);
-int			ft_export(char	**str, char ***env);
+int			ft_export(char	**str, char ***env, t_data *data);
 int			ft_unset(char **tab, char ***env);
 int			ft_echo(char **tab);
-int			ft_expand(char  **str, char ***env, int status);
+int			ft_expand(char **str, char ***env, int status);
 char		*return_value(char *str);
-int			ft_cd(char **tab);
+int			ft_cd(char **tab, t_data *data);
 void		allsignals(void);
 int			syntax(t_data *data, char *str);
 static void	sigint_heredoc(int signum);
-
 
 /*		EXIT		*/
 void		num_required(const char *nptr, t_data *data, t_cmd *cmds);

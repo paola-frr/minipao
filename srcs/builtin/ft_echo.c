@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 23:35:41 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/12 01:09:28 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/27 21:14:12 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_echo(char **tab)
 
 	i = 1;
 	option = 0;
-	if (tab[i] == NULL)
+	if (!tab[i])
 		return (printf("\n"), 0);
 	if (check_echo_option(tab[i]))
 		option = 1;

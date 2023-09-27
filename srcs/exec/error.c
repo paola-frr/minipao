@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 20:46:53 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/24 23:07:23 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/27 21:45:40 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	the_perror(char *str)
 		perror(new);
 	}
 }
-
 
 void	dup_n_close(int fd1, int fd2)
 {

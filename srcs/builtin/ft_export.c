@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 20:22:42 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/16 00:06:06 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/27 20:13:49 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	ft_export_check(char	**tab)
 	return (-1);
 }
 
-int	ft_export(char	**tab, char ***env)
+int	ft_export(char	**tab, char ***env, t_data *data)
 {
 	int	i;
 	int	j;
@@ -85,7 +85,8 @@ int	ft_export(char	**tab, char ***env)
 			if ((j == 0 && !ft_isalpha_(tab[i][0])) ||
 				j != 0 && !(ft_isalpha_(tab[i][j]) || ft_isdigit(tab[i][j])))
 			{
-				printf("export: `%s': not a valid identifier\n", tab[i]);
+				fprintf(stderr, "export: `%s': not a valid identifier\n", tab[i]);
+				data->exit_code = 1;
 				break ;
 			}
 			if (tab[i][++j] == '=')

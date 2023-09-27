@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 21:09:53 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/24 23:14:20 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/27 20:15:40 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	go_home(void)
 	return (printf("bash: cd: HOME not set\n"), 1);
 }
 
-int	ft_cd(char **tab)
+int	ft_cd(char **tab, t_data *data)
 {
 	int		i;
 	int		r;
@@ -38,13 +38,15 @@ int	ft_cd(char **tab)
 		r = chdir(tab[i]);
 		if (r)
 		{
-			printf("bash: cd: %s: No such file or directory\n", tab[i]);
+			fprintf(stderr, "bash: cd: %s: No such file or directory\n", tab[i]);
+			data->exit_code = 1;
 			return (1);
 		}
 	}
 	else if (!strncmp(tab[0], "cd", 2) && tab[i] && tab[i + 1])
 	{
-		printf("bash: cd: too many arguments\n");
+		fprintf(stderr, "bash: cd: too many arguments\n");
+		data->exit_code = 1;
 		return (1);
 	}
 	return (0);

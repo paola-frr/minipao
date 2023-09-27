@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 00:01:49 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/24 23:15:33 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/27 19:59:18 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	three_arg_exit(char **tab, t_data *data, t_cmd *cmds, int i)
 	}
 	else if (num <= 9223372036854775807)
 	{
+		data->exit_code = 1;
 		printf("exit\n");
 		fprintf(stderr, "bash: exit: too many arguments\n");
 	}

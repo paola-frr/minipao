@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   call_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:24:27 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/15 23:36:13 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/27 21:43:20 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,21 @@ int	builtin(char *str)
 int	call_builtin(char *str, t_cmd *cmds, char ***env)
 {
 	if (!ft_strcmp(str, "cd"))
-		return (ft_cd(cmds->arg));
+		return (ft_cd(cmds->arg, cmds->data));
 	else if (!ft_strcmp(str, "pwd"))
 		return (ft_pwd(cmds->arg));
 	else if (!ft_strcmp(str, "export"))
-		return (ft_export(cmds->arg, env));
+		return (ft_export(cmds->arg, env, cmds->data));
 	else if (!ft_strcmp(str, "unset"))
 		return (ft_unset(cmds->arg, env));
 	else if (!ft_strcmp(str, "exit"))
-		return (ft_exit(cmds->arg, cmds->data, cmds), 1);
+		return (ft_exit(cmds->arg, cmds->data, cmds));
 	else if (!ft_strcmp(str, "echo"))
 		return (ft_echo(cmds->arg));
 	else if (!ft_strcmp(str, "env"))
 		return (ft_env(*env));
 	else
 		return (0);
-	free_inchildprocess(cmds->data, cmds);
 }
 
 int	openfiles_builtin(t_cmd *cmds)
@@ -61,7 +60,7 @@ int	openfiles_builtin(t_cmd *cmds)
 			fd = open(cmds->file[i], O_RDONLY);
 		if (fd == -1)
 		{
-			free_cmd(cmds);
+			cmds->data->exit_code = 1;
 			fprintf(stderr, "%s\n", strerror(errno));
 			return (1);
 		}

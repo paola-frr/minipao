@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 18:39:30 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/27 18:40:08 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/27 21:51:49 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,19 @@ int	type_of_arr(char *s)
 	else if (!ft_strcmp("<<", s))
 		return (4);
 	return (0);
+}
+
+void	do_malloc(t_cmd *cmds, int a, int t)
+{
+	cmds->arg = ft_calloc(sizeof(char *), a + 1);
+	if (!cmds->arg)
+		return ;
+	cmds->file = ft_calloc(sizeof(char *), t + 1);
+	if (!cmds->file)
+		return ;
+	cmds->type = ft_calloc(sizeof(int), t);
+	if (!cmds->file)
+		return ;
 }
 
 void	mallocall(t_cmd	*cmds, char **tab)
@@ -47,15 +60,7 @@ void	mallocall(t_cmd	*cmds, char **tab)
 			i++;
 		}
 	}
-	cmds->arg = ft_calloc(sizeof(char *), a + 1);
-	if (!cmds->arg)
-		return ;
-	cmds->file = ft_calloc(sizeof(char *), t + 1);
-	if (!cmds->file)
-		return ;
-	cmds->type = ft_calloc(sizeof(int), t);
-	if (!cmds->file)
-		return ;
+	do_malloc(cmds, a, t);
 }
 
 t_cmd	*parse(char **tab)

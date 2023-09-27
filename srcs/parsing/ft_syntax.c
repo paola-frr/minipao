@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 00:33:06 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/24 20:45:41 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/27 20:06:03 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int	syntax(t_data *data, char *str)
 		return (1);
 	if (!ft_syntax(str) || !check_quote(str))
 	{
-		data->exit_code = 2;
+		data->exit_code = 0;
 		return (1);
 	}
 	if (!ft_strcmp(str, "exit"))
