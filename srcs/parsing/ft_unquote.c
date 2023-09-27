@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unquote.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 02:53:43 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/15 22:51:19 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/27 18:42:29 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ char	*ft_unquote_str(char *str, int len, int *start, char c)
 	k = 0;
 	i = 0;
 	new = malloc(sizeof(char) * len);
+	if (!new)
+		return (0);
 	while (i < *start)
 		new[k++] = str[i++];
 	i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 03:09:08 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/16 00:04:13 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/27 18:42:37 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	expand_replace(char **str, int start, char *replace)
 	len_replace = ft_strlen(replace);
 	end = end_of_expand(str, start);
 	new = malloc(ft_strlen(*str) - end + start + len_replace + 2);
+	if (!new)
+		return (0);
 	while (++i < start)
 		new[i] = (*str)[i];
 	while (replace && replace[j])
@@ -99,6 +101,8 @@ int	remove_expand(char **str, int start)
 	if (e == -1)
 		return (start + 1);
 	new = malloc(sizeof(char) * (ft_strlen(*str) - e + start + 2));
+	if (!new)
+		return (0);
 	while (*str && (*str)[i] && i < start)
 	{
 		new[i] = (*str)[i];

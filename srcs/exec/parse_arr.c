@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 18:39:30 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/14 23:19:00 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/27 18:40:08 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,14 @@ void	mallocall(t_cmd	*cmds, char **tab)
 		}
 	}
 	cmds->arg = ft_calloc(sizeof(char *), a + 1);
+	if (!cmds->arg)
+		return ;
 	cmds->file = ft_calloc(sizeof(char *), t + 1);
+	if (!cmds->file)
+		return ;
 	cmds->type = ft_calloc(sizeof(int), t);
+	if (!cmds->file)
+		return ;
 }
 
 t_cmd	*parse(char **tab)

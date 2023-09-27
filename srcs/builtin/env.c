@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 19:57:23 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/12 19:56:35 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/09/27 18:43:45 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char	**ft_copy(char **env)
 	while (env && env[n])
 		n++;
 	cpenv = ft_calloc(n + 1, sizeof(char *));
+	if (!cpenv)
+		return (NULL);
 	while (i < n)
 	{
 		cpenv[i] = ft_strdup(env[i]);
@@ -59,6 +61,8 @@ char	*return_value(char *str)
 	while (str[end] != '=')
 		end++;
 	new = malloc(sizeof(char) * (end + 1));
+	if (!new)
+		return (NULL);
 	while (i < end)
 	{
 		new[i] = str[i];

@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:45:13 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/15 03:20:51 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/27 18:44:12 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ void	here_doc(t_data *data, char *str)
 
 	data->n_hrdocs = how_many_hrdoc(str);
 	hrdoc = ft_calloc(sizeof(t_hrdoc), data->n_hrdocs);
+	if (!hrdoc)
+		return ;
 	data->hrdoc = hrdoc;
 	z = 0;
 	i = 0;
