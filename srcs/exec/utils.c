@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 20:52:19 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/30 18:15:49 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/30 22:17:40 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@ int	getpipe(char *filename, t_hrdoc *hrdoc)
 
 	fd = -1;
 	i = 0;
-	while (i < hrdoc[0].size)
+	while (i <= hrdoc[0].size)
 	{
+		printf("Heredoc --> %p\n", &hrdoc[i]);
+		printf("Heredoc --> %s\n", hrdoc[i].key);
+		printf("Heredoc --> %s\n", filename);
+
 		if (!strcmp(filename, hrdoc[i].key))
 			return (hrdoc[i].fd[0]);
 		i++;

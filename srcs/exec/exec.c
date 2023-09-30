@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:23:12 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/30 17:21:11 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/30 21:51:59 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	child_process(t_data *data, char **tab, char ***env, int i)
 {
-	char	**arg;
-	char	*cmd;
-
 	free(data->pid);
 	data->arg = ft_split(tab[i], ' ');
 	ft_unquote(data->arg, env);
@@ -70,7 +67,7 @@ void	main_fork(t_data *data, char **tab, char ***env)
 	i = 0;
 	free_cmd(data->cmds);
 	ft_freetab(data->arg);
-	init(data, data->nbcmd, tab);
+	init(data, data->nbcmd);
 	while (i < data->nbcmd)
 	{
 		pipe(data->fd);
@@ -87,7 +84,6 @@ void	main_fork(t_data *data, char **tab, char ***env)
 void	execution(t_data *data, char **tab, char ***env)
 {
 	int		i;
-	char	*cmd;
 
 	i = 0;
 	data->nbcmd = count_len(tab);

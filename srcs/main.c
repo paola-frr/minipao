@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:41:15 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/30 17:53:14 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/30 21:48:28 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	main(int ac, char **av, char **env)
 	t_data	data = {0};
 	char	*str;
 	int		i;
-	char	**tab;
-	t_cmd *cmds;
 
 	(void)ac;
 	(void)av;
@@ -41,6 +39,7 @@ int	main(int ac, char **av, char **env)
 		if (syntax(&data, str) == 2)
 			break ;
 		str = ft_space(str);
+		// data.str = str;
 		ft_expand(&str, &data.env, data.exit_code);
 		if (!str || !*str)
 			continue ;

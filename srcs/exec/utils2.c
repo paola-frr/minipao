@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 03:06:46 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/30 18:05:08 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/30 20:45:38 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	init(t_data *data, int ac, char **tab)
+void	init(t_data *data, int ac)
 {
 	data->pid = malloc(sizeof(int) * ac);
 	if (!data->pid)

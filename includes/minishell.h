@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:36:40 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/30 17:29:20 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/30 21:42:51 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@
 # include "../libft/libft.h"
 // # include "../ft_printf/ft_printf.h"
 
-# define SQUOTE '\''
-# define DQUOTE '\"'
-# define SYNTAXERROR "syntax error !\n"
-
 typedef struct t_data {
 	int				nbcmd;
 	int				fd[2];
@@ -41,6 +37,7 @@ typedef struct t_data {
 	int				exit_code;
 	char			**arg;
 	char			**split;
+	char			*str;
 	int				n_hrdocs;
 	struct t_cmd	*cmds;
 	struct t_hrdoc	*hrdoc;
@@ -61,26 +58,47 @@ typedef struct t_hrdoc {
 }		t_hrdoc;
 
 /*		PAOLARSING	*/
+/*		QUOTE		*/
+void		ft_quote(char *str);
+void		ft_unquote(char **tab, char ***env);
+
+/*		SYNTAX		*/
 int			check_quote(char *str);
 int			check_rafter(char *str, int i);
 int			ft_syntax(char *str);
-void		ft_quote(char *str);
-void		ft_unquote(char **tab, char ***env);
+int			syntax(t_data *data, char *str);
+
+/*		SPACE		*/
 char		*ft_space(char *input);
+int		skip_quote(char *str, int i);
+int		dquote_expand(char **str, int e);
+
+/*		SIGNALS		*/
+void		allsignals(void);
+//static void	sigint_heredoc(int signum);
+
+/*		EXPAND		*/
+int			ft_expand(char **str, char ***env, int status);
+
+/*		ENV		*/
 char		**ft_copy(char **env);
+int			ft_env(char **env);
+char		*return_value(char *str);
+
+/*		ECHO		*/
+int			ft_echo(char **tab);
+
+/*		EXPORT		*/
 int			replace_in_env(char *add, char ***env);
 void		ft_add_to_env(char *str, char ***env);
-void		ft_remove_from_env(char *str, char ***env);
-int			ft_env(char **env);
 int			ft_export(char	**str, char ***env, t_data *data);
+
+/*		UNSET		*/
+void		ft_remove_from_env(char *str, char ***env);
 int			ft_unset(char **tab, char ***env);
-int			ft_echo(char **tab);
-int			ft_expand(char **str, char ***env, int status);
-char		*return_value(char *str);
+
+/*		CD		*/
 int			ft_cd(char **tab, t_data *data);
-void		allsignals(void);
-int			syntax(t_data *data, char *str);
-static void	sigint_heredoc(int signum);
 
 /*		EXIT		*/
 void		num_required(const char *nptr, t_data *data, t_cmd *cmds);
@@ -95,9 +113,9 @@ void		free_in_fd(t_cmd *cmds);
 
 /*		HERE_DOC		*/
 int			how_many_hrdoc(char *str);
-char		*key_word(char *s, t_hrdoc *hrdoc);
-void		letsgo_child(t_data *data, t_hrdoc *hrdoc, char *s);
-void		we_do_fork(t_data *data, t_hrdoc *hrdoc, char *s);
+char		*key_word(char *s);
+void		letsgo_child(t_data *data, t_hrdoc *hrdoc);
+void		we_do_fork(t_data *data, t_hrdoc *hrdoc);
 void		here_doc(t_data *data, char *str);
 
 /*		PARSE_ARR		*/
@@ -120,7 +138,7 @@ char		**get_path(char **env);
 char		*find_path(t_data *data, char *cmd);
 
 /*		EXEC PIPEX		*/
-void		init(t_data *data, int ac, char **av);
+void		init(t_data *data, int ac);
 int			child_process(t_data *data, char **av, char ***env, int i);
 void		parent_process(t_data *data);
 void		wait_n_close(t_data *data);

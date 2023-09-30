@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_syntax.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 00:33:06 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/27 20:06:03 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/30 20:47:27 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	check_quote(char *str)
 	bo = 1;
 	while (str && str[++i])
 	{
-		if (str && str[i] == DQUOTE || str[i] == SQUOTE)
+		if (str && (str[i] == '"' || str[i] == '\''))
 		{
 			c = str[i++];
 			bo = 0;
@@ -44,8 +44,8 @@ int	check_rafter(char *str, int i)
 	c = i;
 	if (str[i] && ft_strchr("|<>", str[i]))
 	{
-		if (str[i + 1] && !ft_strncmp(&str[i], "<<", 2)
-			|| !ft_strncmp(&str[i], ">>", 2))
+		if (str[i + 1] && (!ft_strncmp(&str[i], "<<", 2)
+			|| !ft_strncmp(&str[i], ">>", 2)))
 			i += 1;
 		i++;
 		while (str[i] && ft_isspace(str[i]))
@@ -103,6 +103,7 @@ int	ft_syntax(char *str)
 		return (print_syntax_error(str, i), 0);
 	while (str[i])
 	{
+		i = skip_quote(str, i);
 		i = check_rafter(str, i);
 		if (i <= 0)
 			return (print_syntax_error(str, -i), 0);

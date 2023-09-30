@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unquote.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 02:53:43 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/27 18:42:29 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/30 20:47:40 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_quote(char *str)
 	i = -1;
 	while (str && str[++i])
 	{
-		if (str && str[i] == DQUOTE || str[i] == SQUOTE)
+		if (str && (str[i] == '"' || str[i] == '\''))
 		{
 			c = str[i++];
 			while (str[i] && str[i] != c)
@@ -68,6 +68,7 @@ void	ft_unquote(char **tab, char ***env)
 	int		len;
 	char	c;
 
+	(void)env;
 	j = 0;
 	while (tab && tab[j])
 	{

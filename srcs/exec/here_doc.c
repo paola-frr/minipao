@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:45:13 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/30 18:03:09 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/30 22:13:52 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	how_many_hrdoc(char *str)
 	return (hrdoc);
 }
 
-char	*key_word(char *s, t_hrdoc *hrdoc)
+char	*key_word(char *s)
 {
 	int		i;
 	int		j;
@@ -55,9 +55,10 @@ char	*key_word(char *s, t_hrdoc *hrdoc)
 	return (key);
 }
 
-void	letsgo_child(t_data *data, t_hrdoc *hrdoc, char *s)
+void	letsgo_child(t_data *data, t_hrdoc *hrdoc)
 {
-	int	c;
+	int		c;
+	char	*s;
 
 	c = 0;
 	while (c < data->n_hrdocs)
@@ -77,11 +78,16 @@ void	letsgo_child(t_data *data, t_hrdoc *hrdoc, char *s)
 		free(s);
 		c++;
 	}
+	ft_freetab(data->arg);
+	ft_freetab(data->split);
+	ft_freetab(data->env);
+	ft_freetab(data->path);
+	// free(data->str);
 	free(hrdoc);
 	exit(1);
 }
 
-void	we_do_fork(t_data *data, t_hrdoc *hrdoc, char *s)
+void	we_do_fork(t_data *data, t_hrdoc *hrdoc)
 {
 	pid_t	child_pid;
 	int		i;
@@ -90,7 +96,10 @@ void	we_do_fork(t_data *data, t_hrdoc *hrdoc, char *s)
 	if (child_pid == -1)
 		exit(EXIT_FAILURE);
 	if (child_pid == 0)
-		letsgo_child(data, hrdoc, s);
+	{
+		letsgo_child(data, hrdoc);
+		// free_inchildprocess(data, data->cmds);
+	}
 	else if (child_pid > 0)
 	{
 		i = 0;
@@ -100,33 +109,30 @@ void	we_do_fork(t_data *data, t_hrdoc *hrdoc, char *s)
 			i++;
 		}
 	}
-	free(hrdoc);
 	waitpid(child_pid, NULL, 0);
 }
 
 void	here_doc(t_data *data, char *str)
 {
-	t_hrdoc	*hrdoc;
-	char	*s;
 	int		z;
 	int		i;
 
 	data->n_hrdocs = how_many_hrdoc(str);
-	hrdoc = ft_calloc(sizeof(t_hrdoc), data->n_hrdocs);
-	if (!hrdoc)
+	data->hrdoc = ft_calloc(sizeof(t_hrdoc), data->n_hrdocs + 1);
+	if (!data->hrdoc)
 		return ;
-	data->hrdoc = hrdoc;
 	z = 0;
 	i = 0;
 	while (z < data->n_hrdocs)
 	{
+		data->hrdoc[z].key = 0;
 		if (str[i] == '<' && str[i + 1] && str[i + 1] == '<')
 		{
-			hrdoc[z].size = data->n_hrdocs;
-			pipe(hrdoc[z].fd);
-			hrdoc[z++].key = key_word(&str[i + 2], hrdoc);
-		}
+			data->hrdoc[z].size = data->n_hrdocs;
+			pipe(data->hrdoc[z].fd);
+			data->hrdoc[z++].key = key_word(&str[i + 2]);
+		}	
 		i++;
 	}
-	we_do_fork(data, hrdoc, s);
+	we_do_fork(data, data->hrdoc);
 }
