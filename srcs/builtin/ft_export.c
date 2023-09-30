@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 20:22:42 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/30 20:54:36 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/01 00:55:33 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,29 +69,29 @@ int	ft_export_check(char	**tab)
 	return (-1);
 }
 
-int	ft_export(char	**tab, char ***env, t_data *data)
+int	ft_export(char	**t, char ***env, t_data *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	if (ft_export_check(tab) > 0)
-		return (ft_export_check(tab));
-	while (tab[++i])
+	if (ft_export_check(t) > 0)
+		return (ft_export_check(t));
+	while (t[++i])
 	{
 		j = 0;
-		while (tab[i][j])
+		while (t[i][j])
 		{
-			if ((j == 0 && !ft_isalpha_(tab[i][0])) ||
-				(j != 0 && !(ft_isalpha_(tab[i][j]))) || ft_isdigit(tab[i][j]))
+			if ((j == 0 && !ft_isalpha_(t[i][0])) ||
+				(j != 0 && !(ft_isalpha_(t[i][j]))) || ft_isdigit(t[i][j]))
 			{
-				fprintf(stderr, "export: `%s': not a valid identifier\n", tab[i]);
+				fprintf(stderr, "export: `%s': not a valid identifier\n", t[i]);
 				data->exit_code = 1;
 				break ;
 			}
-			if (tab[i][++j] == '=')
+			if (t[i][++j] == '=')
 			{
-				ft_add_to_env(tab[i], env);
+				ft_add_to_env(t[i], env);
 				break ;
 			}
 		}

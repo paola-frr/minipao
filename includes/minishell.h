@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:36:40 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/30 21:42:51 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/01 00:53:09 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,16 @@ int			syntax(t_data *data, char *str);
 
 /*		SPACE		*/
 char		*ft_space(char *input);
-int		skip_quote(char *str, int i);
-int		dquote_expand(char **str, int e);
+int			skip_quote(char *str, int i);
+int			dquote_expand(char **str, int e);
 
 /*		SIGNALS		*/
 void		allsignals(void);
 //static void	sigint_heredoc(int signum);
 
 /*		EXPAND		*/
+int			expand_delimit(char *str, int start);
+int			end_of_expand(char **str, int start);
 int			ft_expand(char **str, char ***env, int status);
 
 /*		ENV		*/

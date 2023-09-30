@@ -3,35 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 03:09:08 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/27 21:46:23 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/10/01 01:02:04 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	end_of_expand(char **str, int start)
-{
-	int	e;
-
-	e = start + 1;
-	if ((*str)[e] == '?')
-		return (e + 1);
-	else if (!(*str)[e] || (*str)[e] == 32 || (*str)[e] == 33
-		|| ((*str)[e] >= 35 && (*str)[e] <= 38) || ((*str)[e] >= 40
-		&& (*str)[e] <= 47) || ((*str)[e] >= 58 && (*str)[e] <= 64)
-		|| ((*str)[e] >= 91 && (*str)[e] <= 96) || (*str)[e] == 123
-		|| (*str)[e] == 125)
-			return (-1);
-	else if ((*str)[e] == '?' || ft_isdigit((*str)[e]))
-		return (e + 1);
-	else if ((*str)[e] && ft_isalpha_((*str)[e]))
-		while ((*str)[e] && (ft_isalpha_((*str)[e]) || ft_isdigit((*str)[e])))
-			e++;
-	return (e);
-}
 
 int	expand_replace(char **str, int start, char *replace)
 {
@@ -45,6 +24,8 @@ int	expand_replace(char **str, int start, char *replace)
 	j = 0;
 	len_replace = ft_strlen(replace);
 	end = end_of_expand(str, start);
+	if (end == -1)
+		return (start + 2);
 	new = malloc(ft_strlen(*str) - end + start + len_replace + 2);
 	if (!new)
 		return (0);
@@ -88,7 +69,6 @@ int	skip_simple_quote(char *str, int i)
 			;
 	return (i);
 }
-
 
 int	remove_expand(char **str, int start)
 {

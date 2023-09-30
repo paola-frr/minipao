@@ -9,6 +9,7 @@ DIR_OBJS		=	objs
 SRCS_NAMES		=	main.c \
 					parsing/ft_expand.c \
 					parsing/ft_space.c \
+					parsing/parsing_utils.c \
 					parsing/ft_signals.c \
 					parsing/ft_syntax.c \
 					parsing/ft_unquote.c \

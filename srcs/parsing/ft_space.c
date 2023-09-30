@@ -6,52 +6,11 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:17:03 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/30 20:50:47 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/01 00:46:55 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	dquote_expand(char **str, int e)
-{
-	int		i;
-	char	c;
-	char	d;
-
-	i = 0;
-	d = 0;
-	while (i < e)
-	{
-		if ((*str)[i] == '\'' || (*str)[i] == '"')
-		{
-			if ((*str)[i] == '"')
-				d = 1;
-			c = (*str)[i++];
-			while ((*str)[i] && (*str)[i] != c)
-				i++;
-			i++;
-			if (i >= e)
-				return (-1);
-		}
-		i++;
-	}
-	return (e + 1);
-}
-
-int	skip_quote(char *str, int i)
-{
-	char	c;
-
-	if (str[i] && (str[i] == '\'' || str[i] == '"'))
-	{
-		c = str[i++];
-		while(str[i] != c)
-			i++;
-	}
-	if (i >= (int)ft_strlen(str))
-		return (ft_strlen(str) - 1);
-	return (i);
-}
 
 int	count_space2(char *str, int i)
 {
@@ -73,9 +32,7 @@ int	count_space(char *str)
 	while (str && str[i])
 	{
 		if (str[i] == '\'' || str[i] == '"')
-		{
 			i = count_space2(str, i) + 1;
-		}
 		else if (ft_strchr("<>", str[i]))
 		{
 			count += 2;
