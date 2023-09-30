@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:45:13 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/27 18:44:12 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/28 21:33:53 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	we_do_fork(t_data *data, t_hrdoc *hrdoc, char *s)
 			i++;
 		}
 	}
+	free(hrdoc);
 	waitpid(child_pid, NULL, 0);
 }
 

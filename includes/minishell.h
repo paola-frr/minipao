@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:36:40 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/27 21:45:21 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/30 17:29:20 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,5 +137,6 @@ char		*check_cmd(t_data *data, char ***env, char **tab);
 void		free_cmd(t_cmd *cmds);
 int			count_len(char **tab);
 void		manage_cmds(t_data *data, char ***env);
+int			is_there_hrdoc(char *str);
 
 #endif

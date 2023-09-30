@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 00:01:49 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/27 19:59:18 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/30 17:45:22 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	two_arg_exit(char **tab, t_data *data, t_cmd *cmds, int i)
 	if (num == 0)
 	{
 		printf("exit\n");
-		fprintf(stderr, "bash: exit: %s: numeric argument required\n", tab[i + 1]);
+		fprintf(stderr, "exit: %s: numeric argument required\n", tab[i + 1]);
 		free_inchildprocess(data, cmds);
 		data->exit_code = 2;
 		exit (2);
@@ -80,7 +80,7 @@ void	three_arg_exit(char **tab, t_data *data, t_cmd *cmds, int i)
 	{
 		printf("exit\n");
 		printf("exit\n");
-		fprintf(stderr, "bash: exit: %s: numeric argument required\n", tab[i + 1]);
+		fprintf(stderr, "exit: %s: numeric argument required\n", tab[i + 1]);
 		free_inchildprocess(data, cmds);
 		data->exit_code = 2;
 		exit (2);

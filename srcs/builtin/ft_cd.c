@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 21:09:53 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/27 20:15:40 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/30 17:43:32 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ int	ft_cd(char **tab, t_data *data)
 		if (r)
 		{
 			fprintf(stderr, "bash: cd: %s: No such file or directory\n", tab[i]);
-			data->exit_code = 1;
-			return (1);
+			return (data->exit_code = 1, 1);
 		}
 	}
 	else if (!strncmp(tab[0], "cd", 2) && tab[i] && tab[i + 1])

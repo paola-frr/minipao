@@ -6,7 +6,7 @@
 /*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:23:12 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/27 21:34:26 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/09/30 17:21:11 by dsydelny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,11 @@ void	manage_builtin(t_data *data, char ***env)
 	fd[1] = dup(1);
 	openfiles_builtin(data->cmds);
 	call_builtin(data->cmds->cmd, data->cmds, env);
+	free_cmd(data->cmds);
 	dup2(fd[0], 0);
 	dup2(fd[1], 1);
+	close(fd[0]);
+	close(fd[1]);
 }
 
 void	main_fork(t_data *data, char **tab, char ***env)
@@ -101,7 +104,10 @@ void	execution(t_data *data, char **tab, char ***env)
 	data->cmds = parse(data->arg);
 	data->cmds->data = data;
 	if (data->nbcmd == 1 && builtin(data->cmds->cmd))
+	{
 		manage_builtin(data, env);
+		ft_freetab(data->arg);
+	}
 	else
 		main_fork(data, tab, env);
 }
