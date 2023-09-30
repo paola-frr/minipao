@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:36:40 by pferreir          #+#    #+#             */
-/*   Updated: 2023/10/01 00:53:09 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/01 01:49:02 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int			ft_echo(char **tab);
 
 /*		EXPORT		*/
 int			replace_in_env(char *add, char ***env);
-void		ft_add_to_env(char *str, char ***env);
+int			ft_add_to_env(char *str, char ***env);
 int			ft_export(char	**str, char ***env, t_data *data);
 
 /*		UNSET		*/

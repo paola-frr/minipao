@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 20:22:42 by pferreir          #+#    #+#             */
-/*   Updated: 2023/10/01 00:55:33 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/01 01:52:28 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	replace_in_env(char *add, char ***env)
 	return (j);
 }
 
-void	ft_add_to_env(char *add, char ***env)
+int	ft_add_to_env(char *add, char ***env)
 {
 	int		i;
 	char	**new;
@@ -45,10 +45,10 @@ void	ft_add_to_env(char *add, char ***env)
 	i = 0;
 	len = replace_in_env(add, env);
 	if (!len)
-		return ;
+		return (0) ;
 	new = ft_calloc(len + 2, sizeof(char *));
 	if (!new)
-		return ;
+		return (0);
 	while (env && *env && (*env)[i])
 	{
 		new[i] = ft_strdup((*env)[i]);
@@ -58,6 +58,7 @@ void	ft_add_to_env(char *add, char ***env)
 	new[i] = ft_strdup(add);
 	free(*env);
 	*env = new;
+	return (-1);
 }
 
 int	ft_export_check(char	**tab)
@@ -87,13 +88,11 @@ int	ft_export(char	**t, char ***env, t_data *data)
 			{
 				fprintf(stderr, "export: `%s': not a valid identifier\n", t[i]);
 				data->exit_code = 1;
-				break ;
 			}
 			if (t[i][++j] == '=')
-			{
-				ft_add_to_env(t[i], env);
+				j = ft_add_to_env(t[i], env);
+			if (data->exit_code == 1 || j == -1)
 				break ;
-			}
 		}
 	}
 	return (0);
