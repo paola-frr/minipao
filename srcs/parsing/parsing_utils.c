@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 00:45:08 by pferreir          #+#    #+#             */
-/*   Updated: 2023/10/01 01:06:40 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/01 01:44:57 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	end_of_expand(char **str, int start)
 	e = start + 1;
 	if (expand_delimit(*str, start))
 		return (-1);
+	else if ((*str)[e] == '"')
+		return (dquote_expand(str, e));
 	else if ((*str)[e] == '?')
 		return (e + 1);
 	else if (!(*str)[e] || (*str)[e] == 32 || (*str)[e] == 33
