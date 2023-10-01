@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rferradi <rferradi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 03:06:46 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/10/01 01:46:44 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/01 05:20:37 by rferradi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,16 @@ int	count_len(char **tab)
 	int	i;
 
 	i = 0;
+	int j = 0;
 	while (tab && tab[i])
+	{
+
+		printf("tab = |%s\n", tab[i]);
+		if (strncmp(" <<", tab[i], 3) != 0)
+			j++;
 		i++;
-	return (i);
+	}
+	return (j);
 }
 
 int	is_there_hrdoc(char *str)

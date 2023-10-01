@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rferradi <rferradi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:45:13 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/30 22:13:52 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/01 05:04:51 by rferradi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	letsgo_child(t_data *data, t_hrdoc *hrdoc)
 		free(s);
 		c++;
 	}
-	ft_freetab(data->arg);
+	// ft_freetab(data->arg);
 	ft_freetab(data->split);
 	ft_freetab(data->env);
 	ft_freetab(data->path);

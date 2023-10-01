@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rferradi <rferradi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:23:12 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/30 21:51:59 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/01 05:17:52 by rferradi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,11 @@ void	execution(t_data *data, char **tab, char ***env)
 
 	i = 0;
 	data->nbcmd = count_len(tab);
+	printf("NB CMD = %d\n", data->nbcmd);
+	if (!data->nbcmd)
+	{
+		return;
+	}
 	data->arg = ft_split(tab[0], ' ');
 	ft_unquote(data->arg, env);
 	if (!data->arg)

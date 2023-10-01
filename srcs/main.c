@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rferradi <rferradi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:41:15 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/30 21:48:28 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/01 05:22:30 by rferradi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,15 @@ int	main(int ac, char **av, char **env)
 		if (is_there_hrdoc(str))
 			here_doc(&data, str);
 		execution(&data, data.split, &data.env);
-		free(str);
 		ft_freetab(data.split);
+		if (is_there_hrdoc(str))
+		{
+			for (size_t i = 0; i < data.n_hrdocs; i++)
+				free(data.hrdoc[i].key);
+			free(data.hrdoc);
+		}
+		free(str);
+		
 	}
 	free(str);
 	ft_freetab(data.env);
