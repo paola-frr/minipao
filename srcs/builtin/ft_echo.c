@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 23:35:41 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/27 21:14:12 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/10/02 05:06:38 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_echo(char **tab)
 		return (printf("\n"), 0);
 	if (check_echo_option(tab[i]))
 		option = 1;
-	while (check_echo_option(tab[i]))
+	while (tab[i] && check_echo_option(tab[i]))
 		i++;
 	while (tab && tab[i])
 	{

@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 03:09:08 by pferreir          #+#    #+#             */
-/*   Updated: 2023/10/02 00:21:51 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 06:52:58 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,25 @@
 int	expand_replace(char **str, int start, char *replace)
 {
 	char	*new;
-	int		i;
-	int		j;
 	int		len_replace;
 	int		end;
+	int		i;
 
-	i = -1;
-	j = 0;
 	len_replace = ft_strlen(replace);
 	end = end_of_expand(str, start);
 	if (end == -1)
 		return (start + 2);
-	new = malloc(ft_strlen(*str) - end + start + len_replace + 2);
+	new = malloc(ft_strlen(*str) - end + start + len_replace + 1);
 	if (!new)
 		return (0);
-	while (++i < start)
-		new[i] = (*str)[i];
-	while (replace && replace[j])
-		new[i++] = replace[j++];
+	i = replace_utils(str, new, replace, start);
 	while ((*str)[end] != '\0')
 		new[i++] = (*str)[end++];
 	new[i] = '\0';
 	free(*str);
 	*str = new;
+	if (len_replace + start - 2 < 0)
+		return (free(replace), 1);
 	return (free(replace), len_replace + start - 2);
 }
 
@@ -134,7 +130,7 @@ int	ft_expand(char	**str, char ***env, int status)
 	i = 0;
 	if (!str && !(*str))
 		return (0);
-	while ((*str)[i])
+	while ((*str) && (*str)[i])
 	{
 		i = skip_simple_quote(*str, i);
 		if ((*str)[i] && (*str)[i] == '$')

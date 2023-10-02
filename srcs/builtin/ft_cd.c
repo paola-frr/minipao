@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 21:09:53 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/30 17:43:32 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/10/02 04:45:52 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	ft_cd(char **tab, t_data *data)
 {
 	int		i;
 	int		r;
-	char	*home;
 
 	i = 1;
 	if (!tab)

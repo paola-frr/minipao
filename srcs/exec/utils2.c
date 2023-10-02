@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 03:06:46 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/10/01 20:58:16 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 04:45:41 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	is_there_hrdoc(char *str)
 	int	i;
 
 	i = 0;
-	while (i < ft_strlen(str))
+	while (i < (int)ft_strlen(str))
 	{
 		if (str[i] == '<' && str[i + 1] && str[i + 1] == '<')
 			return (1);

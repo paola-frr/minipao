@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:23:12 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/10/02 02:55:48 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 06:57:34 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,6 @@ void	execution(t_data *data, char **tab, char ***env)
 	if (!data->nbcmd)
 		return ;
 	data->arg = ft_split(tab[0], ' ');
-	if (!data->arg)
-		exit(1);
 	ft_unquote(data->arg, env);
 	if (!data->arg)
 		exit(1);

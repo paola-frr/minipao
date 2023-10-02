@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:45:13 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/10/02 02:54:22 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 06:57:59 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	letsgo_child(t_data *data, t_hrdoc *hrdoc)
 	{
 		while (1)
 		{
-			//signal(SIGINT, &ctrl);
 			s = readline("> ");
 			ft_expand(&s, &data->env, data->exit_code);
 			if (!s || !strcmp(s, hrdoc[c].key))

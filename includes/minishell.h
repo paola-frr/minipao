@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:36:40 by pferreir          #+#    #+#             */
-/*   Updated: 2023/10/02 02:32:26 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 06:53:12 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int			syntax(t_data *data, char *str);
 int			ft_ar(char *str);
 
 /*		SPACE		*/
+int			skip_isspace(char *str, int i);
 char		*ft_space(char *input);
 int			skip_quote(char *str, int i);
 int			dquote_expand(char **str, int e);
@@ -82,6 +83,7 @@ void		allsignals(void);
 //static void	sigint_heredoc(int signum);
 
 /*		EXPAND		*/
+int			replace_utils(char **str, char *new, char *replace, int start);
 int			expand_delimit(char *str, int start);
 int			end_of_expand(char **str, int start);
 int			ft_expand(char **str, char ***env, int status);
@@ -134,7 +136,7 @@ int			how_many_hrdoc(char *str);
 int			ft_exit(char **tab, t_data *data, t_cmd *cmds);
 int			call_builtin(char *str, t_cmd *cmds, char ***env);
 int			builtin(char *str);
-int			ft_pwd(char **tab);
+int			ft_pwd(void);
 int			openfiles_builtin(t_cmd *cmds);
 void		here_doc(t_data *data, char *str);
 

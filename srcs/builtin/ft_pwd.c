@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 00:19:27 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/01 01:16:45 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/10/02 04:46:27 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define PATH_MAX	10000
 #endif
 
-int	ft_pwd(char **tab)
+int	ft_pwd(void)
 {
 	char	path[PATH_MAX];
 

@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 03:41:15 by pferreir          #+#    #+#             */
-/*   Updated: 2023/10/02 03:09:47 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 06:34:24 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	main_process(t_data *data, char **str)
 
 int	idk(t_data *data, char **str)
 {
+	if (!*data->str || ft_ar(data->str))
+		return (free(data->str), 1);
 	ft_quote(*str);
 	if (*str)
 		data->split = ft_split(*str, '|');
@@ -69,11 +71,6 @@ int	main(int ac, char **av, char **env)
 			break ;
 		data.str = ft_space(data.str);
 		ft_expand(&data.str, &data.env, data.exit_code);
-		if (!data.str || !*data.str || ft_ar(data.str))
-		{
-			free(data.str);
-			continue ;
-		}
 		if (idk(&data, &data.str))
 			continue ;
 		main_process(&data, &data.str);

@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:42:11 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/10/02 02:57:06 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 06:58:19 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,16 @@ void	free_inchildprocess(t_data *data, t_cmd *cmds, int hd)
 {
 	if (hd)
 		free_cmd(cmds);
-	ft_freetab(data->arg);
-	ft_freetab(data->split);
-	ft_freetab(data->env);
-	ft_freetab(data->path);
-	free(data->str);
+	if (data->arg)
+		ft_freetab(data->arg);
+	if (data->split)
+		ft_freetab(data->split);
+	if (data->env)
+		ft_freetab(data->env);
+	if (data->env)
+		ft_freetab(data->path);
+	if (data->str)
+		free(data->str);
 	if (!hd)
 		free(data->hrdoc);
 }

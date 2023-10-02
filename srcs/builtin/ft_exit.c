@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 00:01:49 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/10/01 23:14:36 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 04:46:05 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	three_arg_exit(char **tab, t_data *data, t_cmd *cmds, int i)
 int	ft_exit(char **tab, t_data *data, t_cmd *cmds)
 {
 	int				i;
-	long long int	num;
 
 	i = 0;
 	if (!tab)

@@ -49,7 +49,7 @@ CC				=	cc
 
 CDFLAGS 		= -MMD -MP
 
-CFLAGS			=	-g3 -Wall -Werror -Wextra
+CFLAGS			=	-Wall -Werror -Wextra
 
 MAKEFLAGS		=	--no-print-directory
 
@@ -57,11 +57,11 @@ all:	${NAME}
 
 $(NAME): $(DIR_OBJS) $(OBJS) 
 	make -C libft
-	$(CC) -g3 ${INC} $(OBJS) $(LIB) -o $(NAME)
+	$(CC) ${INC} $(OBJS) $(LIB) -o $(NAME)
 	@echo "\033[31;5mminishell\033[0m"
 
 $(OBJS) : $(DIR_OBJS)/%.o : $(DIR_SRCS)/%.c
-	$(CC) -g3 $(CDFLAGS) $(INC) -c $< -o $@ 
+	$(CC) -g3 $(CDFLAGS) $(CFLAGS) $(INC) -c $< -o $@ 
 
 $(DIR_OBJS):
 	mkdir -p $(DIR_OBJS)

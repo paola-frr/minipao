@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 00:33:06 by pferreir          #+#    #+#             */
-/*   Updated: 2023/10/02 03:12:46 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 06:56:25 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_quote(char *str)
 			while (str[i] && str[i] != c)
 				i++;
 			if (!str[i])
-				return (bo);
+				return (printf("bash: quote error\n"), bo);
 			if (str[i] == c)
 				bo = 1;
 		}
@@ -68,7 +68,6 @@ void	print_syntax_error(char *str, int i)
 	int	len;
 
 	len = ft_strlen(str);
-	printf("%c\n", str[i]);
 	if (str[i] == '|')
 		printf("bash : syntax error near unexpected token `|'\n");
 	else if (len > i + 3 && str[i + 3] == '|')
@@ -118,6 +117,8 @@ int	syntax(t_data *data, char *str)
 		return (2);
 	if (!*str)
 		return (free(str), 1);
+	if (skip_isspace(str, 0) >= (int)ft_strlen(str))
+		return (1);
 	if (!ft_syntax(str) || !check_quote(str))
 	{
 		data->exit_code = 0;

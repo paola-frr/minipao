@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   call_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:24:27 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/27 21:43:20 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/10/02 04:46:37 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	call_builtin(char *str, t_cmd *cmds, char ***env)
 	if (!ft_strcmp(str, "cd"))
 		return (ft_cd(cmds->arg, cmds->data));
 	else if (!ft_strcmp(str, "pwd"))
-		return (ft_pwd(cmds->arg));
+		return (ft_pwd());
 	else if (!ft_strcmp(str, "export"))
 		return (ft_export(cmds->arg, env, cmds->data));
 	else if (!ft_strcmp(str, "unset"))

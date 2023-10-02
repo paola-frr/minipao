@@ -6,11 +6,25 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 00:45:08 by pferreir          #+#    #+#             */
-/*   Updated: 2023/10/02 02:21:29 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 06:53:15 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	replace_utils(char **str, char *new, char *replace, int start)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	j = 0;
+	while (++i < start)
+		new[i] = (*str)[i];
+	while (replace && replace[j])
+		new[i++] = replace[j++];
+	return (i);
+}
 
 int	dquote_expand(char **str, int e)
 {

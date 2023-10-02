@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 03:18:53 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/16 00:00:54 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 04:45:23 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_remove_from_env(char *remove, char ***env)
 	int		i;
 	int		j;
 	char	**new;
-	int		len;
 
 	i = 0;
 	j = 0;
