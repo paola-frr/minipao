@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 00:45:08 by pferreir          #+#    #+#             */
-/*   Updated: 2023/10/02 06:53:15 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 11:02:41 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ int	dquote_expand(char **str, int e)
 		}
 		i++;
 	}
-	return (e + 1);
+	if ((*str)[e + 1] && (*str)[e + 1] == '"')
+		return (e + 2);
+	else
+		return (e);
 }
 
 int	skip_quote(char *str, int i)

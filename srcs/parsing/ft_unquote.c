@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 02:53:43 by pferreir          #+#    #+#             */
-/*   Updated: 2023/09/30 20:47:40 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 10:37:13 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_quote(char *str)
 	char	c;
 
 	i = -1;
+	if (!str)
+		return ;
 	while (str && str[++i])
 	{
 		if (str && (str[i] == '"' || str[i] == '\''))
@@ -86,4 +88,54 @@ void	ft_unquote(char **tab, char ***env)
 		}
 		j++;
 	}
+}
+
+int ft_withoutquote(char *str)
+{
+	int i = 0;
+	char c = 0;
+	int len = 0;
+	while (str && str[i])
+	{
+		if (ft_strchr("\"'", str[i]))
+		{
+			c = str[i++];
+			while (str[i] && str[i] != c)
+			{
+				len++;
+				i++;
+			}
+		}
+		else
+			len++;
+		i++;
+	}
+	return (len);
+}
+
+
+char *ft_unquote2(char *str)
+{
+	int		i;
+	int		len;
+	char	c;
+	char	*new;
+
+	i = 0;
+	len = ft_withoutquote(str);
+	new = ft_calloc(len + 1, 1);
+	len = 0;
+	while (str[i])
+	{
+		if (ft_strchr("\"'", str[i]))
+		{
+			c = str[i++];
+			while (str[i] && str[i] != c)
+				new[len++] = -str[i++];
+		}
+		else
+			new[len++] = str[i];
+		i++;
+	}
+	return (free(str), new);
 }

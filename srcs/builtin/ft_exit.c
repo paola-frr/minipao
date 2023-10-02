@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 00:01:49 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/10/02 04:46:05 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 13:35:57 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	num_required(const char *nptr, t_data *data, t_cmd *cmds)
 {
-	fprintf(stderr, "exit\nbash: exit: %s: numeric argument required\n", nptr);
+	ft_printf("exit\nbash: exit: %s: numeric argument required\n", nptr);
 	free_inchildprocess(data, cmds, 1);
 	data->exit_code = 2;
 	exit (2);
@@ -57,7 +57,7 @@ void	two_arg_exit(char **tab, t_data *data, t_cmd *cmds, int i)
 	if (num == 0)
 	{
 		printf("exit\n");
-		fprintf(stderr, "exit: %s: numeric argument required\n", tab[i + 1]);
+		ft_printf("exit: %s: numeric argument required\n", tab[i + 1]);
 		free_inchildprocess(data, cmds, 1);
 		data->exit_code = 2;
 		exit (2);
@@ -80,7 +80,7 @@ void	three_arg_exit(char **tab, t_data *data, t_cmd *cmds, int i)
 	{
 		printf("exit\n");
 		printf("exit\n");
-		fprintf(stderr, "exit: %s: numeric argument required\n", tab[i + 1]);
+		ft_printf("exit: %s: numeric argument required\n", tab[i + 1]);
 		free_inchildprocess(data, cmds, 1);
 		data->exit_code = 2;
 		exit (2);
@@ -89,7 +89,7 @@ void	three_arg_exit(char **tab, t_data *data, t_cmd *cmds, int i)
 	{
 		data->exit_code = 1;
 		printf("exit\n");
-		fprintf(stderr, "bash: exit: too many arguments\n");
+		ft_printf("bash: exit: too many arguments\n");
 	}
 }
 
@@ -100,16 +100,16 @@ int	ft_exit(char **tab, t_data *data, t_cmd *cmds)
 	i = 0;
 	if (!tab)
 		return (0);
-	if (!strncmp(tab[i], "exit", 4) && !tab[i + 1])
+	if (!ft_strncmp(tab[i], "exit", 4) && !tab[i + 1])
 	{
 		printf("exit\n");
 		free_inchildprocess(data, cmds, 1);
 		data->exit_code = 0;
 		exit (0);
 	}
-	else if ((!strncmp(tab[i], "exit", 4) && tab[i + 1] && !tab[i + 2]))
+	else if ((!ft_strncmp(tab[i], "exit", 4) && tab[i + 1] && !tab[i + 2]))
 		two_arg_exit(tab, data, cmds, i);
-	else if ((!strncmp(tab[i], "exit", 4) && tab[i + 1] && tab[i + 2]))
+	else if ((!ft_strncmp(tab[i], "exit", 4) && tab[i + 1] && tab[i + 2]))
 		three_arg_exit(tab, data, cmds, i);
 	return (0);
 }

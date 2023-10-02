@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 03:09:08 by pferreir          #+#    #+#             */
-/*   Updated: 2023/10/02 06:52:58 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 10:54:13 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ int	expand_replace(char **str, int start, char *replace)
 	return (free(replace), len_replace + start - 2);
 }
 
-int	skip_simple_quote(char *str, int i)
+int	skip_simple_quote(char *str, int i, int hd)
 {
 	int	i1;
 	int	bo;
 
 	i1 = 0;
 	bo = 0;
-	while (i1 < i && str[i1])
+	while (hd == 1 && i1 < i && str[i1])
 	{
 		if (str[i1] && str[i1] == '"')
 		{
@@ -60,7 +60,7 @@ int	skip_simple_quote(char *str, int i)
 		else
 			i1++;
 	}
-	if (str[i] && str[i] == '\'' && bo == 0)
+	if (hd == 1 && str[i] && str[i] == '\'' && bo == 0)
 		while (str[++i] != '\'')
 			;
 	return (i);
@@ -121,7 +121,7 @@ int	expand_is_in_env(char *str, int start, char ***env, char **replace)
 	return (free(check), 0);
 }
 
-int	ft_expand(char	**str, char ***env, int status)
+int	ft_expand(char	**str, char ***env, int status, int hd)
 {
 	int		i;
 	int		start;
@@ -132,7 +132,7 @@ int	ft_expand(char	**str, char ***env, int status)
 		return (0);
 	while ((*str) && (*str)[i])
 	{
-		i = skip_simple_quote(*str, i);
+		i = skip_simple_quote(*str, i, hd);
 		if ((*str)[i] && (*str)[i] == '$')
 		{
 			start = i++;

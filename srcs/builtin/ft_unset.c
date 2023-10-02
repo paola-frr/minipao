@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 03:18:53 by pferreir          #+#    #+#             */
-/*   Updated: 2023/10/02 04:45:23 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 09:35:58 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_remove_from_env(char *remove, char ***env)
 		return ;
 	while (env && (*env) && (*env)[i])
 	{
-		if (strcmp((*env)[i], remove))
+		if (ft_strcmp((*env)[i], remove))
 			new[j++] = ft_strdup((*env)[i]);
 		free((*env)[i]);
 		i++;
@@ -37,7 +37,7 @@ void	ft_remove_from_env(char *remove, char ***env)
 
 int	ft_unset_check(char	**tab, char ***env)
 {
-	if (!tab || strcmp(tab[0], "unset") || !(*env))
+	if (!tab || ft_strcmp(tab[0], "unset") || !(*env))
 		return (0);
 	if (tab[1] == NULL)
 		return (printf("\n"), 1);
@@ -59,9 +59,9 @@ int	ft_unset(char **tab, char ***env)
 		str = ft_strjoin(tab[i], "=");
 		while ((*env)[++j])
 		{
-			if (!strncmp((*env)[j], str, ft_strlen(str)))
+			if (!ft_strncmp((*env)[j], str, ft_strlen(str)))
 			{
-				ft_remove_from_env(strdup((*env)[j]), env);
+				ft_remove_from_env(ft_strdup((*env)[j]), env);
 				break ;
 			}
 		}

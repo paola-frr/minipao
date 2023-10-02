@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 20:46:53 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/27 21:45:40 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/10/02 10:14:38 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	the_perror(char *str)
 	if (ft_strlen(str) > 1000)
 		perror(str);
 	if (access(str, X_OK) != 0)
-		fprintf(stderr, "bash: %s: command not found\n", str);
+		ft_printf("bash: %s: command not found\n", str);
 	else
 	{
 		ft_strlcpy(new, "bash: ", 7);

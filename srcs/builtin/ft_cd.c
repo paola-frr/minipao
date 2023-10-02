@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 21:09:53 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/10/02 04:45:52 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 10:13:13 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,20 @@ int	ft_cd(char **tab, t_data *data)
 	i = 1;
 	if (!tab)
 		return (0);
-	if (!strncmp(tab[0], "cd", 2) && tab[i] == NULL)
+	if (!ft_strncmp(tab[0], "cd", 2) && tab[i] == NULL)
 		go_home();
-	else if (!strncmp(tab[0], "cd", 2) && tab[i] && tab[i + 1] == NULL)
+	else if (!ft_strncmp(tab[0], "cd", 2) && tab[i] && tab[i + 1] == NULL)
 	{
 		r = chdir(tab[i]);
 		if (r)
 		{
-			fprintf(stderr, "bash: cd: %s: No such file or directory\n", tab[i]);
+			ft_printf("bash: cd: %s: No such file or directory\n", tab[i]);
 			return (data->exit_code = 1, 1);
 		}
 	}
-	else if (!strncmp(tab[0], "cd", 2) && tab[i] && tab[i + 1])
+	else if (!ft_strncmp(tab[0], "cd", 2) && tab[i] && tab[i + 1])
 	{
-		fprintf(stderr, "bash: cd: too many arguments\n");
+		ft_printf("bash: cd: too many arguments\n");
 		data->exit_code = 1;
 		return (1);
 	}

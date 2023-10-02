@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:24:27 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/10/02 04:46:37 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 10:14:25 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	openfiles_builtin(t_cmd *cmds)
 		if (fd == -1)
 		{
 			cmds->data->exit_code = 1;
-			fprintf(stderr, "%s\n", strerror(errno));
+			ft_printf("%s\n", strerror(errno));
 			return (1);
 		}
 		if (cmds->type[i] == 1 || cmds->type[i] == 2)

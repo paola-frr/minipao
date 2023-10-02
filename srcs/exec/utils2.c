@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 03:06:46 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/10/02 04:45:41 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 09:33:21 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	count_len(char **tab)
 		k = 0;
 		while (ft_isspace(tab[i][k]))
 			k++;
-		if (strncmp("<<", &tab[i][k], 2) != 0)
+		if (ft_strncmp("<<", &tab[i][k], 2) != 0)
 			j++;
 		i++;
 	}

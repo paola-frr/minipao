@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 20:52:19 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/10/01 02:36:45 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 11:16:27 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	getpipe(char *filename, t_hrdoc *hrdoc)
 
 	fd = -1;
 	i = 0;
-	while (i <= hrdoc[0].size)
+	while (i < hrdoc[0].size)
 	{
-		if (!strcmp(filename, hrdoc[i].key))
+		if (!ft_strcmp(filename, hrdoc[i].key))
 			return (hrdoc[i].fd[0]);
 		i++;
 	}
@@ -45,7 +45,10 @@ void	openfiles(t_cmd *cmds, t_hrdoc *hrdoc)
 		else if (cmds->type[i] == 4)
 			fd = getpipe(cmds->file[i], hrdoc);
 		if (fd == -1)
+		{
+			free_inchildprocess(cmds->data, cmds, 0);
 			free_in_fd(cmds);
+		}
 		if (cmds->type[i] == 1 || cmds->type[i] == 2)
 			dup_n_close(fd, STDOUT_FILENO);
 		else
@@ -76,10 +79,7 @@ char	*check_cmd(t_data *data, char ***env, char **tab)
 	{
 		data->path = get_path(*env);
 		if (!data->path)
-		{
-			ft_printf("bash: %s: command not found\n", tab[0]);
 			return (NULL);
-		}
 		cmd = find_path(data, tab[0]);
 		if (!cmd)
 			return (NULL);
