@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:45:13 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/30 22:13:52 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 02:54:22 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,9 @@ void	letsgo_child(t_data *data, t_hrdoc *hrdoc)
 	{
 		while (1)
 		{
-			// signal(SIGINT, &sigint_heredoc);
+			//signal(SIGINT, &ctrl);
 			s = readline("> ");
+			ft_expand(&s, &data->env, data->exit_code);
 			if (!s || !strcmp(s, hrdoc[c].key))
 				break ;
 			ft_putendl_fd(s, hrdoc[c].fd[1]);
@@ -78,12 +79,7 @@ void	letsgo_child(t_data *data, t_hrdoc *hrdoc)
 		free(s);
 		c++;
 	}
-	ft_freetab(data->arg);
-	ft_freetab(data->split);
-	ft_freetab(data->env);
-	ft_freetab(data->path);
-	// free(data->str);
-	free(hrdoc);
+	free_inchildprocess(data, data->cmds, 0);
 	exit(1);
 }
 
@@ -96,10 +92,7 @@ void	we_do_fork(t_data *data, t_hrdoc *hrdoc)
 	if (child_pid == -1)
 		exit(EXIT_FAILURE);
 	if (child_pid == 0)
-	{
 		letsgo_child(data, hrdoc);
-		// free_inchildprocess(data, data->cmds);
-	}
 	else if (child_pid > 0)
 	{
 		i = 0;
@@ -125,13 +118,12 @@ void	here_doc(t_data *data, char *str)
 	i = 0;
 	while (z < data->n_hrdocs)
 	{
-		data->hrdoc[z].key = 0;
 		if (str[i] == '<' && str[i + 1] && str[i + 1] == '<')
 		{
 			data->hrdoc[z].size = data->n_hrdocs;
 			pipe(data->hrdoc[z].fd);
 			data->hrdoc[z++].key = key_word(&str[i + 2]);
-		}	
+		}
 		i++;
 	}
 	we_do_fork(data, data->hrdoc);

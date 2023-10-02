@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 03:06:46 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/10/01 01:46:44 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/01 20:58:16 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,21 @@ void	wait_n_close(t_data *data)
 int	count_len(char **tab)
 {
 	int	i;
+	int	j;
+	int	k;
 
 	i = 0;
+	j = 0;
 	while (tab && tab[i])
+	{
+		k = 0;
+		while (ft_isspace(tab[i][k]))
+			k++;
+		if (strncmp("<<", &tab[i][k], 2) != 0)
+			j++;
 		i++;
-	return (i);
+	}
+	return (j);
 }
 
 int	is_there_hrdoc(char *str)

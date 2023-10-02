@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsydelny <dsydelny@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 18:39:30 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/27 21:51:49 by dsydelny         ###   ########.fr       */
+/*   Updated: 2023/10/01 21:00:39 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ t_cmd	*parse(char **tab)
 		if (type_of_arr(tab[i]))
 		{
 			cmds.type[t] = type_of_arr(tab[i]);
-			cmds.file[t++] = tab[i + 1];
+			if (tab[i + 1])
+				cmds.file[t++] = tab[i + 1];
 			i++;
 		}
 		else

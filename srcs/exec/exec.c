@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:23:12 by dsydelny          #+#    #+#             */
-/*   Updated: 2023/09/30 21:51:59 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 02:55:48 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ int	child_process(t_data *data, char **tab, char ***env, int i)
 	redirection(data, data->cmds, i);
 	if (!data->cmds->cmd)
 	{
-		free_inchildprocess(data, data->cmds);
+		free_inchildprocess(data, data->cmds, 1);
 		exit (1);
 	}
 	manage_cmds(data, env);
-	free_inchildprocess(data, data->cmds);
+	free_inchildprocess(data, data->cmds, 1);
 	exit(data->exit_code);
 }
 
@@ -83,11 +83,15 @@ void	main_fork(t_data *data, char **tab, char ***env)
 
 void	execution(t_data *data, char **tab, char ***env)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	data->nbcmd = count_len(tab);
+	if (!data->nbcmd)
+		return ;
 	data->arg = ft_split(tab[0], ' ');
+	if (!data->arg)
+		exit(1);
 	ft_unquote(data->arg, env);
 	if (!data->arg)
 		exit(1);

@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 20:22:42 by pferreir          #+#    #+#             */
-/*   Updated: 2023/10/01 01:52:28 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/01 20:33:10 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_add_to_env(char *add, char ***env)
 	i = 0;
 	len = replace_in_env(add, env);
 	if (!len)
-		return (0) ;
+		return (0);
 	new = ft_calloc(len + 2, sizeof(char *));
 	if (!new)
 		return (0);

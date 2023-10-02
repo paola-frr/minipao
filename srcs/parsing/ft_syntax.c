@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 00:33:06 by pferreir          #+#    #+#             */
-/*   Updated: 2023/10/01 00:43:21 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 03:12:46 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	print_syntax_error(char *str, int i)
 	int	len;
 
 	len = ft_strlen(str);
+	printf("%c\n", str[i]);
 	if (str[i] == '|')
 		printf("bash : syntax error near unexpected token `|'\n");
 	else if (len > i + 3 && str[i + 3] == '|')
@@ -113,8 +114,10 @@ int	ft_syntax(char *str)
 
 int	syntax(t_data *data, char *str)
 {
+	if (!str)
+		return (2);
 	if (!*str)
-		return (1);
+		return (free(str), 1);
 	if (!ft_syntax(str) || !check_quote(str))
 	{
 		data->exit_code = 0;

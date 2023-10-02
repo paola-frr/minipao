@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 00:45:08 by pferreir          #+#    #+#             */
-/*   Updated: 2023/10/01 01:44:57 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 02:21:29 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int	skip_quote(char *str, int i)
 {
 	char	c;
 
-	if (str[i] && (str[i] == '\'' || str[i] == '"'))
+	if (str && str[i] && (str[i] == '\'' || str[i] == '"'))
 	{
 		c = str[i++];
-		while (str[i] != c)
+		while (str[i] && str[i] != c)
 			i++;
 	}
 	if (i >= (int)ft_strlen(str))

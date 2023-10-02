@@ -6,7 +6,7 @@
 /*   By: pferreir <pferreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:36:40 by pferreir          #+#    #+#             */
-/*   Updated: 2023/10/01 01:49:02 by pferreir         ###   ########.fr       */
+/*   Updated: 2023/10/02 02:32:26 by pferreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <sys/wait.h>
 # include "../libft/libft.h"
 // # include "../ft_printf/ft_printf.h"
+# define SYNTAXERROR "bash: syntax error near unexpected token `|'\n"
 
 typedef struct t_data {
 	int				nbcmd;
@@ -67,6 +68,9 @@ int			check_quote(char *str);
 int			check_rafter(char *str, int i);
 int			ft_syntax(char *str);
 int			syntax(t_data *data, char *str);
+
+/*		AMBIGUOUS REDIRECT		*/
+int			ft_ar(char *str);
 
 /*		SPACE		*/
 char		*ft_space(char *input);
@@ -110,7 +114,7 @@ int			ft_exit(char **tab, t_data *data, t_cmd *cmds);
 
 /*		FREE		*/
 void		free_cmd(t_cmd *cmds);
-void		free_inchildprocess(t_data *data, t_cmd *cmds);
+void		free_inchildprocess(t_data *data, t_cmd *cmds, int hd);
 void		free_in_fd(t_cmd *cmds);
 
 /*		HERE_DOC		*/
@@ -130,7 +134,6 @@ int			how_many_hrdoc(char *str);
 int			ft_exit(char **tab, t_data *data, t_cmd *cmds);
 int			call_builtin(char *str, t_cmd *cmds, char ***env);
 int			builtin(char *str);
-void		free_inchildprocess(t_data *data, t_cmd *cmds);
 int			ft_pwd(char **tab);
 int			openfiles_builtin(t_cmd *cmds);
 void		here_doc(t_data *data, char *str);
